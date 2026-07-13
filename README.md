@@ -10,10 +10,11 @@ Sitio web de **Laura Quintero Casa Spa**, spa de belleza y bienestar ubicado en 
 - **Trust bar** con badges de confianza (10 años, 5 estrellas, cosmiatra, 500+ clientas)
 - **Sección Nosotros** con imagen y lista de valores diferenciales
 - **Servicios** en tabs por categoría (Facial, Corporal, Cejas & Pestañas, Nails, Depilación), con fotos reales de tratamientos en cada tarjeta
+- **Modal "Ver todos los servicios y precios"** con el catálogo completo agrupado por categoría (Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal, Nails Spa)
 - **Proceso en 3 pasos** (Agendar → Experiencia → Resultados)
 - **Galería lightbox** con swipe táctil y navegación por teclado
 - **FAQ** con acordeón animado
-- **Sección Contacto** con info de contacto + mapa Google Maps
+- **Sección Contacto** con info de contacto + mapa Google Maps (dirección enlazada a Google Maps en header, contacto, FAQ y footer)
 - **Footer** completo con logo, links, social y CTA
 - **Chatbot n8n** (Qchat) integrado reemplazando el botón de WhatsApp flotante
 - **Navbar sticky** con efecto scroll + menú hamburguesa para móvil
@@ -62,9 +63,11 @@ Configurado en `index.html` con:
 ## 📞 Contacto del negocio
 
 - WhatsApp: +57 314 738 8239
-- Ubicación: Cra 79 #44a-20, La América, Medellín, Antioquia
+- Ubicación: [Cra 79 #44a-20, La América, Medellín, Antioquia](https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6)
 - Instagram: @lauraq_spa
+- Horario: Lunes a viernes 10:00 a.m.–5:00 p.m. · Sábados 9:00 a.m.–2:00 p.m. · Domingos cerrado (no se muestra en el sitio, solo en `Promp n8n.txt` para el chatbot)
 
 ## 🚀 Despliegue
 
 Repositorio: [servisolucionesaragon/Laura_Q_Spa](https://github.com/servisolucionesaragon/Laura_Q_Spa) (rama `main`).
+Footer del sitio: © 2026, desarrollado por [Servisoluciones Aragón](https://ssaragon.com/).
