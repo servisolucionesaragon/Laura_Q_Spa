@@ -1,10 +1,10 @@
-# Laura Quintero Casa Spa — Contexto del proyecto
+# Laura Quintero Spa — Contexto del proyecto
 
 Notas de contexto para retomar el trabajo en este sitio en sesiones futuras. Sitio de una sola página (`index.html`) para un spa de belleza en Medellín.
 
 ## Negocio
 
-- Nombre: Laura Quintero Casa Spa
+- Nombre: **Laura Quintero Spa** (renombrado desde "Laura Quintero Casa Spa" — el título, meta tags y todos los `alt=""` del sitio ya usan el nombre corto; si se encuentra "Casa Spa" en algún lado es texto desactualizado)
 - WhatsApp: +57 314 738 8239 — `https://wa.me/573147388239`
 - Dirección: Cra 79 #44a-20, La América, Medellín, Antioquia
 - Google Maps: `https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6` (coords exactas: 6.2509277,-75.5973354, usadas en el iframe embebido de Contáctanos)
@@ -34,7 +34,7 @@ Fuente: `Colores.txt` (raíz del proyecto) + el logo oficial de la marca.
 - **Secciones eliminadas** (a pedido del cliente, con su CSS/JS asociado ya limpiado): CTA band ("¿Lista para renovarte?") y Testimonios/Reseñas completos (carrusel, controles, `.t-dot`, etc. — también se quitó del navbar/footer/JS).
 - **Scrollbar personalizado** con `--primary` (`::-webkit-scrollbar` + `scrollbar-color` para Firefox).
 - **Responsive**: breakpoints en 1024px (tablet, grids a 2 columnas), 768px (menú hamburguesa, grids a 1 columna), 480px y 360px (teléfonos pequeños, tabs de servicios con scroll horizontal), más una media query para celulares en horizontal (`max-height: 480px and orientation: landscape`).
-- **SEO/social**: `robots.txt`, `sitemap.xml`, `<link rel="canonical">`, favicon (`img/marca.png`), meta Open Graph + Twitter Card usando `img/Baner.png` (1028×243px) como imagen de vista previa al compartir el link.
+- **SEO/social**: `robots.txt`, `sitemap.xml`, `<link rel="canonical">`, favicon (`img/marca.png`), meta Open Graph + Twitter Card usando `img/og-image.png` (1099×824px, fondo blanco) como imagen de vista previa al compartir el link. Ese archivo se generó aplanando `img/logo full2.png` (transparente) sobre blanco con PIL — no editar `logo full2.png` directamente para esto, regenerar `og-image.png` si el logo cambia. Se probó primero con `img/Baner.png` (1028×243, proporción muy panorámica) pero se cambió por pedido del cliente.
 
 ## Chatbot n8n (`Promp n8n.xml`)
 
@@ -62,4 +62,10 @@ Colores.txt        ← Paleta original de referencia (no se despliega, es nota d
 Promp n8n.xml      ← Prompt del chatbot (gitignored, config interna)
 robots.txt, sitemap.xml ← SEO, dominio lauraqspa.com
 img/               ← CERA-HILO/, Corporal/, NAILS/ tienen fotos reales de tratamientos
+                     og-image.png es generado (ver sección SEO/social), logo full2.png es el original
+.claude/memory/    ← Copia local versionada de la memoria de colaboración (espejo de la memoria externa del asistente)
 ```
+
+## Estado de producción
+
+- Dominio `lauraqspa.com` **ya está en línea** (verificado con curl: HTTP 200, tanto la home como `img/og-image.png` resuelven correctamente) al 2026-07-13.
