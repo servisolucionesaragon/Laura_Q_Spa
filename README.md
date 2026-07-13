@@ -41,7 +41,7 @@ img/
   logo.png                          ← Logo para navbar y loader (fondo transparente)
   logo full2.png                    ← Logo para el footer (fondo transparente, con texto)
   marca.png                         ← Ícono de marca — usado como favicon
-  og-image.png                      ← logo full2.png aplanado sobre blanco, para Open Graph/Twitter
+  og-image.png                      ← Imagen de vista previa para Open Graph/Twitter (1200×630)
   carousel-1.jpg, carousel-2.jpg     ← Imágenes del hero
   about.jpg, team-2.jpg              ← Sección Nosotros / galería
   CERA-HILO/                         ← Fotos reales: cejas, pestañas, depilación
@@ -101,7 +101,7 @@ Las instrucciones del bot viven en **`Promp n8n.xml`** (raíz del proyecto), en 
 - `robots.txt` permite todo excepto `/mantenimiento.html`, y apunta a `sitemap.xml`.
 - `sitemap.xml` lista la home (`https://lauraqspa.com/`).
 - `<link rel="canonical">` fija la URL canónica en `https://lauraqspa.com/`.
-- Open Graph y Twitter Card usan `img/og-image.png` (1099×824, fondo blanco sólido — se generó aplanando `logo full2.png`, que es transparente y se rompía en modo oscuro).
+- Open Graph y Twitter Card usan `img/og-image.png` (1200×630, proporción ideal para tarjetas grandes — diseño propio con logo, dominio, título y CTA).
 - Para validar la vista previa al compartir el link: [opengraph.xyz](https://www.opengraph.xyz/) o el Sharing Debugger de Facebook (ojo: cachea, hay que forzar "Scrape Again" si ya se compartió antes).
 
 ## 🚀 Despliegue / Git

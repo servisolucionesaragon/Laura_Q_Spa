@@ -34,7 +34,7 @@ Fuente: `Colores.txt` (raíz del proyecto) + el logo oficial de la marca.
 - **Secciones eliminadas** (a pedido del cliente, con su CSS/JS asociado ya limpiado): CTA band ("¿Lista para renovarte?") y Testimonios/Reseñas completos (carrusel, controles, `.t-dot`, etc. — también se quitó del navbar/footer/JS).
 - **Scrollbar personalizado** con `--primary` (`::-webkit-scrollbar` + `scrollbar-color` para Firefox).
 - **Responsive**: breakpoints en 1024px (tablet, grids a 2 columnas), 768px (menú hamburguesa, grids a 1 columna), 480px y 360px (teléfonos pequeños, tabs de servicios con scroll horizontal), más una media query para celulares en horizontal (`max-height: 480px and orientation: landscape`).
-- **SEO/social**: `robots.txt`, `sitemap.xml`, `<link rel="canonical">`, favicon (`img/marca.png`), meta Open Graph + Twitter Card usando `img/og-image.png` (1099×824px, fondo blanco) como imagen de vista previa al compartir el link. Ese archivo se generó aplanando `img/logo full2.png` (transparente) sobre blanco con PIL — no editar `logo full2.png` directamente para esto, regenerar `og-image.png` si el logo cambia. Se probó primero con `img/Baner.png` (1028×243, proporción muy panorámica) pero se cambió por pedido del cliente.
+- **SEO/social**: `robots.txt`, `sitemap.xml`, `<link rel="canonical">`, favicon (`img/marca.png`), meta Open Graph + Twitter Card usando `img/og-image.png` (1200×630px, opaco — proporción ideal para tarjetas grandes) como imagen de vista previa al compartir el link. Es un diseño propio (logo + dominio + título + botón CTA), no autogenerado. Historial: se probó primero con `img/Baner.png` (1028×243, muy panorámico), luego con un flatten de `logo full2.png` sobre blanco (1099×824, sin transparencia pero proporción no ideal), y finalmente el cliente subió directamente esta versión de 1200×630 — si se vuelve a reemplazar `img/og-image.png`, actualizar también `og:image:width`/`og:image:height` en `index.html` con las dimensiones reales del archivo nuevo.
 
 ## Chatbot n8n (`Promp n8n.xml`)
 
@@ -62,7 +62,7 @@ Colores.txt        ← Paleta original de referencia (no se despliega, es nota d
 Promp n8n.xml      ← Prompt del chatbot (gitignored, config interna)
 robots.txt, sitemap.xml ← SEO, dominio lauraqspa.com
 img/               ← CERA-HILO/, Corporal/, NAILS/ tienen fotos reales de tratamientos
-                     og-image.png es generado (ver sección SEO/social), logo full2.png es el original
+                     og-image.png es el diseño de vista previa social (ver sección SEO/social), logo full2.png es el logo del footer
 .claude/memory/    ← Copia local versionada de la memoria de colaboración (espejo de la memoria externa del asistente)
 ```
 
