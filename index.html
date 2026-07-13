@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laura Quintero Casa Spa | Medellín</title>
+  <meta name="description" content="Laura Quintero Casa Spa – Especialistas en tratamientos faciales, corporales, nails, cejas y pestañas en La América, Medellín." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <!-- n8n Chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- PAGE LOADER -->
+  <div id="page-loader">
+    <div class="loader-logo">
+      <img src="img/logo.png" alt="Laura Quintero Casa Spa" />
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <div id="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-contacts">
+        <a href="tel:+573147388239"><i class="fas fa-phone"></i> 314 738 8239</a>
+        <a href="tel:+5745912380"><i class="fas fa-phone-alt"></i> 591 2380</a>
+        <span><i class="fas fa-map-marker-alt"></i> La América, Medellín</span>
+      </div>
+      <div class="top-social">
+        <a href="https://www.instagram.com/lauraq_spa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/p/Laura-Quintero-Spa-100076470963178/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@lauraq_spa03" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/573147388239" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <div class="container navbar-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="img/logo.png" alt="Laura Quintero Casa Spa" />
+      </a>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#testimonios">Reseñas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary nav-cta">
+        <i class="fab fa-whatsapp"></i> Agendar cita
+      </a>
+      <button id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-slider">
+      <div class="hero-slide active" style="background-image:url('img/carousel-1.jpg')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+          <span class="hero-tag">Medellín · La América</span>
+          <h1>Renuévate.<br/>Resplandece.</h1>
+          <p>Tratamientos faciales y corporales diseñados especialmente para ti, con productos premium y técnicas profesionales.</p>
+          <div class="hero-btns">
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary">
+              <i class="fab fa-whatsapp"></i> Agendar ahora
+            </a>
+            <a href="#servicios" class="btn btn-outline-white">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide" style="background-image:url('img/carousel-2.jpg')">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">Más de 10 años de experiencia</span>
+          <h1>Tu piel,<br/>nuestra pasión.</h1>
+          <p>Somos especialistas en cosmetología y cosmiatría para que luzcas y te sientas increíble.</p>
+          <div class="hero-btns">
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary">
+              <i class="fab fa-whatsapp"></i> Agendar ahora
+            </a>
+            <a href="#nosotros" class="btn btn-outline-white">Conócenos</a>
+          </div>
+        </div>
+      </div>
+      <button class="slider-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+      <div class="slider-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section id="trust-bar">
+    <div class="container trust-grid">
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="0">
+        <i class="fas fa-award"></i>
+        <div><strong>+10 años</strong><span>De experiencia</span></div>
+      </div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-star"></i>
+        <div><strong>5 estrellas</strong><span>Calificación Google</span></div>
+      </div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-user-md"></i>
+        <div><strong>Cosmiatra</strong><span>Profesional certificada</span></div>
+      </div>
+      <div class="trust-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-heart"></i>
+        <div><strong>+500 clientas</strong><span>Felices y renovadas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="container about-grid">
+      <div class="about-img" data-aos="fade-right">
+        <img src="img/about.jpg" alt="Laura Quintero Casa Spa" />
+        <div class="about-badge">
+          <span>+10</span>
+          <small>años de experiencia</small>
+        </div>
+      </div>
+      <div class="about-text" data-aos="fade-left" data-aos-delay="150">
+        <span class="section-label">Sobre nosotros</span>
+        <h2>Un lugar mágico y acogedor en el corazón de La América</h2>
+        <p>En <strong>Laura Quintero Casa Spa</strong> somos especialistas en tratamientos faciales y corporales. Amamos ver resultados, pero sobre todo, amamos que nuestras clientas salgan felices, sintiéndose hermosas y renovadas.</p>
+        <p>Nuestra cosmiatra certificada diseña cada tratamiento de forma personalizada, usando productos de alta gama y técnicas actualizadas, para que tu piel luzca exactamente como siempre lo soñaste.</p>
+        <ul class="about-list">
+          <li><i class="fas fa-check-circle"></i> Cosmetóloga y cosmiatra certificada</li>
+          <li><i class="fas fa-check-circle"></i> Productos premium de alta calidad</li>
+          <li><i class="fas fa-check-circle"></i> Atención personalizada 100%</li>
+          <li><i class="fas fa-check-circle"></i> Ambiente acogedor y tranquilo</li>
+        </ul>
+        <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20más%20información%20sobre%20los%20servicios" target="_blank" class="btn btn-primary">Contáctanos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Lo que ofrecemos</span>
+        <h2>Nuestros servicios</h2>
+        <p>Desde tratamientos faciales hasta nail spa, tenemos todo lo que necesitas para verte y sentirte increíble.</p>
+      </div>
+
+      <div class="services-tabs" data-aos="fade-up" data-aos-delay="100">
+        <button class="tab-btn active" data-tab="facial"><i class="fas fa-spa"></i> Facial</button>
+        <button class="tab-btn" data-tab="corporal"><i class="fas fa-dumbbell"></i> Corporal</button>
+        <button class="tab-btn" data-tab="cejas"><i class="fas fa-eye"></i> Cejas & Pestañas</button>
+        <button class="tab-btn" data-tab="nails"><i class="fas fa-hand-sparkles"></i> Nails Spa</button>
+        <button class="tab-btn" data-tab="depilacion"><i class="fas fa-feather"></i> Depilación</button>
+      </div>
+
+      <div class="tab-content active" id="tab-facial">
+        <div class="services-grid">
+          <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="service-icon"><i class="fas fa-pump-medical"></i></div>
+            <h3>Limpieza Facial</h3>
+            <p>Elimina impurezas, puntos negros y células muertas para una piel fresca y renovada.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20Limpieza%20Facial" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="service-icon"><i class="fas fa-tint"></i></div>
+            <h3>Hidratación Facial con Vitaminas</h3>
+            <p>Devuelve la luminosidad y el brillo natural a tu piel con vitaminas y activos premium.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20Hidratación%20Facial" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="service-icon"><i class="fas fa-gem"></i></div>
+            <h3>Porcelanización Facial</h3>
+            <p>Tratamiento de alta gama que unifica el tono, borra imperfecciones y da efecto porcelana.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20Porcelanización%20Facial" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="240">
+            <div class="service-icon"><i class="fas fa-circle"></i></div>
+            <h3>Tratamiento de Manchas</h3>
+            <p>Despigmentación especializada para eliminar manchas por sol, acné o cambios hormonales.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20un%20Tratamiento%20de%20Manchas" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="320">
+            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Tratamiento de Acné</h3>
+            <p>Protocolo personalizado para controlar y eliminar el acné de forma efectiva y sin cicatrices.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20un%20Tratamiento%20de%20Acné" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-icon"><i class="fas fa-magic"></i></div>
+            <h3>Rejuvenecimiento Facial</h3>
+            <p>Estimula el colágeno, reduce líneas de expresión y devuelve la juventud a tu piel.</p>
+            <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20un%20Rejuvenecimiento%20Facial" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-corporal">
+        <div class="services-grid">
+          <div class="service-card service-card--photo" data-aos="fade-up">
+            <div class="service-photo"><img src="img/Corporal/Masajes.jpg" alt="Masaje relajante" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-wind"></i></div>
+            <div class="service-body">
+              <h3>Masaje Relajante</h3>
+              <p>Libera tensiones musculares y estrés acumulado con técnicas suaves y aceites especiales.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20un%20Masaje%20Relajante" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="80">
+            <div class="service-photo"><img src="img/Corporal/masaje de reducción.png" alt="Masaje de reducción y tonificación" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-snowflake"></i></div>
+            <div class="service-body">
+              <h3>Reducción y Tonificación</h3>
+              <p>Tratamiento corporal especializado para moldear la figura y tonificar músculos.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Reducción%20y%20Tonificación" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="160">
+            <div class="service-photo"><img src="img/Corporal/Bronceado con aerógrafo.png" alt="Bronceado con aerógrafo" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-sun"></i></div>
+            <div class="service-body">
+              <h3>Bronceado con Aerógrafo</h3>
+              <p>Consigue un bronceado perfecto, uniforme y duradero sin exponerte al sol.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20un%20Bronceado%20con%20Aerógrafo" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-cejas">
+        <div class="services-grid">
+          <div class="service-card service-card--photo" data-aos="fade-up">
+            <div class="service-photo"><img src="img/CERA-HILO/Diseño de cejas.jpg" alt="Diseño de cejas con sombreado" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+            <div class="service-body">
+              <h3>Diseño de Cejas con Sombreado</h3>
+              <p>Diseñamos la ceja perfecta para tu rostro con técnica de sombreado suave y natural.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Diseño%20de%20Cejas" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="80">
+            <div class="service-photo"><img src="img/CERA-HILO/Cejas Hilo o cera.jpg" alt="Laminado de cejas" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-eye"></i></div>
+            <div class="service-body">
+              <h3>Laminado de Cejas</h3>
+              <p>Fija y define tus cejas naturales para un look ordenado y estructurado todo el día.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Laminado%20de%20Cejas" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="160">
+            <div class="service-photo"><img src="img/CERA-HILO/Pestañas Pelo a Pelo.webp" alt="Pestañas pelo a pelo" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-star"></i></div>
+            <div class="service-body">
+              <h3>Pestañas Pelo a Pelo</h3>
+              <p>Extensiones de pestañas con técnica pelo a pelo para un look natural e irresistible.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Pestañas%20Pelo%20a%20Pelo" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="240">
+            <div class="service-photo"><img src="img/CERA-HILO/Lifting de Pestañas.avif" alt="Lifting de pestañas" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-feather-alt"></i></div>
+            <div class="service-body">
+              <h3>Lifting de Pestañas</h3>
+              <p>Levanta y curva tus pestañas naturales para abrirte la mirada sin necesidad de extensiones.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Lifting%20de%20Pestañas" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-nails">
+        <div class="services-grid">
+          <div class="service-card service-card--photo" data-aos="fade-up">
+            <div class="service-photo"><img src="img/NAILS/Manos semi.jpg" alt="Nail Spa Manos" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-hand-sparkles"></i></div>
+            <div class="service-body">
+              <h3>Nail Spa Manos</h3>
+              <p>Manicura completa con hidratación, cutícula y esmaltado de larga duración.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Nail%20Spa%20Manos" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="80">
+            <div class="service-photo"><img src="img/NAILS/pies semi.jpg" alt="Nail Spa Pies" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div class="service-body">
+              <h3>Nail Spa Pies</h3>
+              <p>Pedicura completa con exfoliación, hidratación profunda y esmaltado perfecto.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Nail%20Spa%20Pies" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-depilacion">
+        <div class="services-grid">
+          <div class="service-card service-card--photo" data-aos="fade-up">
+            <div class="service-photo"><img src="img/CERA-HILO/Pierna completa.jpg" alt="Depilación con cera" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-leaf"></i></div>
+            <div class="service-body">
+              <h3>Depilación con Cera</h3>
+              <p>Depilación suave y eficaz con cera caliente o fría para resultados duraderos.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Depilación%20con%20Cera" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="service-card service-card--photo" data-aos="fade-up" data-aos-delay="80">
+            <div class="service-photo"><img src="img/CERA-HILO/Bigote Hilo o cera.jpg" alt="Depilación con hilo" loading="lazy" /></div>
+            <div class="service-icon"><i class="fas fa-thread"></i></div>
+            <div class="service-body">
+              <h3>Depilación con Hilo</h3>
+              <p>Técnica de hilo para un acabado limpio y preciso, ideal para cejas y rostro.</p>
+              <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20Depilación%20con%20Hilo" target="_blank" class="service-link">Agendar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Cómo funciona</span>
+        <h2>Tu experiencia en 3 pasos</h2>
+      </div>
+      <div class="proceso-grid">
+        <div class="proceso-step" data-aos="fade-up" data-aos-delay="0">
+          <div class="paso-num">01</div>
+          <div class="paso-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3>Agenda tu cita</h3>
+          <p>Escríbenos por WhatsApp, cuéntanos qué necesitas y te ayudamos a elegir el tratamiento ideal.</p>
+        </div>
+        <div class="proceso-connector" data-aos="fade-up" data-aos-delay="100"></div>
+        <div class="proceso-step" data-aos="fade-up" data-aos-delay="200">
+          <div class="paso-num">02</div>
+          <div class="paso-icon"><i class="fas fa-spa"></i></div>
+          <h3>Vive la experiencia</h3>
+          <p>Llega a nuestro acogedor spa y déjate mimar por nuestra especialista con productos premium.</p>
+        </div>
+        <div class="proceso-connector" data-aos="fade-up" data-aos-delay="300"></div>
+        <div class="proceso-step" data-aos="fade-up" data-aos-delay="400">
+          <div class="paso-num">03</div>
+          <div class="paso-icon"><i class="fas fa-star"></i></div>
+          <h3>Resplandece</h3>
+          <p>Sal renovada, radiante y feliz. Resultados visibles desde la primera sesión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Resultados reales</span>
+        <h2>Galería</h2>
+        <p>Conoce el ambiente de nuestro spa y los resultados de nuestros tratamientos.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="0">
+          <img src="img/carousel-1.jpg" alt="Tratamiento facial" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="40">
+          <img src="img/Corporal/Masajes.jpg" alt="Masaje corporal" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="80">
+          <img src="img/NAILS/pies semi.jpg" alt="Nail Spa Pies" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="120">
+          <img src="img/about.jpg" alt="Ambiente spa" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="160">
+          <img src="img/CERA-HILO/Pierna completa.jpg" alt="Depilación con cera" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+          <img src="img/team-2.jpg" alt="Especialista Laura Quintero" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="240">
+          <img src="img/Corporal/Bronceado con aerógrafo.png" alt="Bronceado con aerógrafo" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="280">
+          <img src="img/NAILS/Manos semi.jpg" alt="Nail Spa Manos" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="320">
+          <img src="img/carousel-2.jpg" alt="Spa tratamiento" />
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox">
+      <button id="lightbox-close"><i class="fas fa-times"></i></button>
+      <button id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+      <button id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Lo que dicen nuestras clientas</span>
+        <h2>Reseñas</h2>
+      </div>
+      <div class="testimonios-carousel" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonios-track">
+          <div class="testimonio-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Desde que descubrí Laura Q Spa, se convirtió en mi lugar favorito para desconectarme del estrés. Salí completamente renovada. La atención es impecable y el ambiente súper acogedor. ¡Volveré sin duda!"</p>
+            <div class="testimonio-author">
+              <img src="img/team-2.jpg" alt="Camila Pérez" />
+              <div>
+                <strong>Camila Pérez</strong>
+                <span>Estudiante universitaria</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonio-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Mi esposa me regaló una sesión y fue una experiencia increíble. Nunca había visitado un spa y quedé impresionado con el profesionalismo. Me explicaron todo y salí sintiéndome revitalizado. ¡100% recomendado!"</p>
+            <div class="testimonio-author">
+              <img src="img/team-2.jpg" alt="Daniel Álvarez" />
+              <div>
+                <strong>Daniel Álvarez</strong>
+                <span>Ingeniero de sistemas</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonio-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Me hice el diseño de cejas y el lifting de pestañas y quedé feliz. El lugar es precioso, muy tranquilo. Lo que más me gusta es que cada tratamiento es personalizado. ¡Es un verdadero oasis en Medellín!"</p>
+            <div class="testimonio-author">
+              <img src="img/team-2.jpg" alt="Leidy Holguín" />
+              <div>
+                <strong>Leidy Holguín</strong>
+                <span>Contadora</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonios-controls">
+          <button id="test-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+          <div class="testimonios-dots">
+            <span class="t-dot active"></span>
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+          </div>
+          <button id="test-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container faq-container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Preguntas frecuentes</span>
+        <h2>Todo lo que necesitas saber</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item" data-aos="fade-up">
+          <button class="faq-question">¿Debo reservar cita con anticipación? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Sí, recomendamos reservar tu cita con al menos 24 horas de anticipación para garantizar tu espacio. Puedes hacerlo fácilmente por WhatsApp o llamándonos directamente.</p></div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="60">
+          <button class="faq-question">¿Cuánto dura una sesión? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>La duración varía según el tratamiento. Una limpieza facial tarda entre 60 y 90 minutos. Tratamientos más completos como el rejuvenecimiento pueden durar hasta 2 horas. Te informamos con detalle al reservar.</p></div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
+          <button class="faq-question">¿Los resultados son inmediatos? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Para muchos tratamientos los resultados son visibles desde la primera sesión. Sin embargo, para tratamientos como manchas o acné, recomendamos un plan de sesiones para resultados óptimos y duraderos.</p></div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="180">
+          <button class="faq-question">¿Qué métodos de pago aceptan? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Aceptamos efectivo y transferencias bancarias. Consulta disponibilidad de pagos con tarjeta al momento de tu cita.</p></div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
+          <button class="faq-question">¿Dónde están ubicados exactamente? <i class="fas fa-plus"></i></button>
+          <div class="faq-answer"><p>Estamos ubicados en La América, Medellín, Antioquia. Al reservar tu cita te enviamos la dirección exacta y el enlace de Google Maps para que llegues fácilmente.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container contacto-grid">
+      <div class="contacto-info" data-aos="fade-right">
+        <span class="section-label">Contáctanos</span>
+        <h2>Estamos aquí para ti</h2>
+        <p>Escríbenos o llámanos y con gusto te asesoramos sobre el tratamiento ideal para ti.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/573147388239" target="_blank">314 738 8239</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Teléfono</strong>
+              <a href="tel:+5745912380">591 2380</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Ubicación</strong>
+              <span>La América, Medellín, Antioquia</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-instagram"></i>
+            <div>
+              <strong>Instagram</strong>
+              <a href="https://www.instagram.com/lauraq_spa/" target="_blank">@lauraq_spa</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-social">
+          <a href="https://www.instagram.com/lauraq_spa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/p/Laura-Quintero-Spa-100076470963178/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@lauraq_spa03" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/573147388239" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="contacto-map" data-aos="fade-left" data-aos-delay="150">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2!2d-75.607!3d6.244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428f97b80e7df%3A0xa84f9d253e92f918!2sLaura%20Quintero%20SPA!5e0!3m2!1ses!2sco!4v1700000000000"
+          width="100%" height="400" style="border:0;border-radius:16px;" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="Laura Quintero Casa Spa" class="footer-logo" />
+        <p>Especialistas en tratamientos faciales, corporales, nails, cejas y pestañas. Tu bienestar es nuestra misión.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/lauraq_spa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/p/Laura-Quintero-Spa-100076470963178/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@lauraq_spa03" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/573147388239" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Tratamientos Faciales</a></li>
+          <li><a href="#servicios">Tratamientos Corporales</a></li>
+          <li><a href="#servicios">Cejas & Pestañas</a></li>
+          <li><a href="#servicios">Nails Spa</a></li>
+          <li><a href="#servicios">Depilación</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#testimonios">Reseñas</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573147388239">314 738 8239</a></p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+5745912380">591 2380</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> La América, Medellín</p>
+        <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary btn-sm footer-btn">
+          <i class="fab fa-whatsapp"></i> Agendar cita
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Laura Quintero Casa Spa · La América, Medellín · Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- n8n Chat container -->
+  <div id="n8n-chat"></div>
+
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- n8n Chat -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    createChat({
+      webhookUrl: 'https://n8n.ssaragon.com/webhook/c50f2eb4-3071-49e3-b598-943049f5252f/chat',
+      webhookConfig: { method: 'POST', headers: {} },
+      target: '#n8n-chat',
+      mode: 'window',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: {},
+      showWelcomeScreen: false,
+      defaultLanguage: 'es',
+      initialMessages: ['Hola! 👋', 'Soy 𝑸𝒄𝒉𝒂𝒕. Dime tu nombre y en qué te puedo ayudar hoy?'],
+      i18n: {
+        es: {
+          title: '𝑸𝒄𝒉𝒂𝒕 en línea 24/7',
+          subtitle: 'Bienvenid@ a 𝑳𝑨𝑼𝑹𝑨 𝑸 𝙎𝙋𝘼',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Mensaje.',
+        },
+      },
+    });
+  </script>
+
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>
