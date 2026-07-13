@@ -741,11 +741,10 @@ section { padding: 90px 0; }
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .footer-logo {
-  height: 64px;
+  height: 130px;
   width: auto;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   border-radius: var(--radius);
-  padding: 8px 14px;
   background: var(--white);
 }
 .footer-brand p { font-size: .88rem; line-height: 1.7; max-width: 280px; margin-bottom: 20px; }

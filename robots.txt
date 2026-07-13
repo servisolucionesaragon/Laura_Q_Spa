@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /mantenimiento.html
+
+Sitemap: https://lauraqspa.com/sitemap.xml

@@ -65,7 +65,7 @@ Configurado en `index.html` con:
 - WhatsApp: +57 314 738 8239
 - Ubicación: [Cra 79 #44a-20, La América, Medellín, Antioquia](https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6)
 - Instagram: @lauraq_spa
-- Horario: Lunes a viernes 10:00 a.m.–5:00 p.m. · Sábados 9:00 a.m.–2:00 p.m. · Domingos cerrado (no se muestra en el sitio, solo en `Promp n8n.txt` para el chatbot)
+- Horario: Lunes a viernes 10:00 a.m.–5:00 p.m. · Sábados 9:00 a.m.–2:00 p.m. · Domingos cerrado (no se muestra en el sitio, solo en `Promp n8n.xml` para el chatbot)
 
 ## 🚀 Despliegue
 
