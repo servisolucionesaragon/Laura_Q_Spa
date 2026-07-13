@@ -1,0 +1,6 @@
+- [User: Servisoluciones Aragón](user_role_servisoluciones_aragon.md) — este repo es un proyecto de cliente (Laura Q Spa), no del usuario
+- [Feedback: iteración visual](feedback_visual_iteration_style.md) — da feedback corto/cualitativo en tamaños, no números exactos
+- [Feedback: no manejar el navegador](feedback_no_driving_browser.md) — prefiere probar el sitio él mismo
+- [Feedback: patrón de commit/push](feedback_git_commit_push_pattern.md) — confía en pedir "commit/push" directo, igual revisar diff antes
+- [Proyecto: Laura Q Spa](project_laura_q_spa.md) — estado del sitio, apunta a `.claude/CONTEXT.md` del repo para detalles técnicos
+- [Referencias: repos y dominios](reference_lqspa_repos_domains.md) — GitHub, n8n, dominio, maps, whatsapp
