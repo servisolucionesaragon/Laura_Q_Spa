@@ -103,6 +103,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── Price List Modal ──────────────────────────
+  const priceModal = document.getElementById('price-modal');
+  const openPriceList = document.getElementById('open-price-list');
+  const priceModalClose = document.getElementById('price-modal-close');
+
+  function openPriceModal() {
+    priceModal?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePriceModal() {
+    priceModal?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  openPriceList?.addEventListener('click', openPriceModal);
+  priceModalClose?.addEventListener('click', closePriceModal);
+  priceModal?.addEventListener('click', e => { if (e.target === priceModal) closePriceModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && priceModal?.classList.contains('open')) closePriceModal();
+  });
+
   // ── Lightbox Gallery ─────────────────────────
   const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
@@ -147,37 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
   lightbox?.addEventListener('touchend', e => {
     const diff = lbTouchStart - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) diff > 0 ? lbNext?.click() : lbPrev?.click();
-  });
-
-  // ── Testimonios Carousel ──────────────────────
-  const track = document.querySelector('.testimonios-track');
-  const tCards = document.querySelectorAll('.testimonio-card');
-  const tDots = document.querySelectorAll('.t-dot');
-  const tPrev = document.getElementById('test-prev');
-  const tNext = document.getElementById('test-next');
-  let tIndex = 0;
-  let tInterval;
-
-  function goToTestimonio(idx) {
-    tIndex = (idx + tCards.length) % tCards.length;
-    if (track) track.style.transform = `translateX(-${tIndex * 100}%)`;
-    tDots.forEach((d, i) => d.classList.toggle('active', i === tIndex));
-  }
-
-  tPrev?.addEventListener('click', () => { goToTestimonio(tIndex - 1); resetT(); });
-  tNext?.addEventListener('click', () => { goToTestimonio(tIndex + 1); resetT(); });
-  tDots.forEach((dot, i) => dot.addEventListener('click', () => { goToTestimonio(i); resetT(); }));
-
-  function startT() { tInterval = setInterval(() => goToTestimonio(tIndex + 1), 4500); }
-  function resetT() { clearInterval(tInterval); startT(); }
-  if (tCards.length > 1) startT();
-
-  // Touch swipe for testimonios
-  let tTouchStart = 0;
-  track?.addEventListener('touchstart', e => { tTouchStart = e.touches[0].clientX; }, { passive: true });
-  track?.addEventListener('touchend', e => {
-    const diff = tTouchStart - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) { diff > 0 ? goToTestimonio(tIndex + 1) : goToTestimonio(tIndex - 1); resetT(); }
   });
 
   // ── FAQ Accordion ─────────────────────────────

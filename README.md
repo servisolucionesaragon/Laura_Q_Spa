@@ -12,14 +12,13 @@ Sitio web de **Laura Quintero Casa Spa**, spa de belleza y bienestar ubicado en 
 - **Servicios** en tabs por categoría (Facial, Corporal, Cejas & Pestañas, Nails, Depilación), con fotos reales de tratamientos en cada tarjeta
 - **Proceso en 3 pasos** (Agendar → Experiencia → Resultados)
 - **Galería lightbox** con swipe táctil y navegación por teclado
-- **Testimonios** en carrusel con auto-play y navegación
 - **FAQ** con acordeón animado
 - **Sección Contacto** con info de contacto + mapa Google Maps
 - **Footer** completo con logo, links, social y CTA
 - **Chatbot n8n** (Qchat) integrado reemplazando el botón de WhatsApp flotante
 - **Navbar sticky** con efecto scroll + menú hamburguesa para móvil
 - **Page loader** animado con logo
-- Diseño 100% responsive
+- Diseño 100% responsive: breakpoints para desktop grande, tablet (1024px/768px), teléfonos (480px/360px) y móviles en horizontal
 
 ## 📁 Estructura
 
@@ -27,11 +26,11 @@ Sitio web de **Laura Quintero Casa Spa**, spa de belleza y bienestar ubicado en 
 index.html              ← Página principal
 mantenimiento.html       ← Página de "en mantenimiento" (fallback)
 css/style.css            ← Estilos con variables CSS (paleta, scrollbar, componentes)
-js/main.js               ← Interactividad (slider, tabs, lightbox, FAQ, testimonios)
+js/main.js               ← Interactividad (slider, tabs, lightbox, FAQ)
 img/
   logo.png                        ← Logo oficial (usado en loader, navbar, footer)
   carousel-1.jpg, carousel-2.jpg   ← Imágenes del hero
-  about.jpg, team-2.jpg            ← Sección Nosotros / testimonios
+  about.jpg, team-2.jpg            ← Sección Nosotros / galería
   CERA-HILO/                       ← Fotos reales: cejas, pestañas, depilación
   Corporal/                        ← Fotos reales: masajes, bronceado
   NAILS/                           ← Fotos reales: manicura y pedicura
@@ -63,8 +62,7 @@ Configurado en `index.html` con:
 ## 📞 Contacto del negocio
 
 - WhatsApp: +57 314 738 8239
-- Teléfono: 591 2380
-- Ubicación: La América, Medellín, Antioquia
+- Ubicación: Cra 79 #44a-20, La América, Medellín, Antioquia
 - Instagram: @lauraq_spa
 
 ## 🚀 Despliegue

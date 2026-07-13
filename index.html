@@ -35,8 +35,7 @@
     <div class="container top-bar-inner">
       <div class="top-contacts">
         <a href="tel:+573147388239"><i class="fas fa-phone"></i> 314 738 8239</a>
-        <a href="tel:+5745912380"><i class="fas fa-phone-alt"></i> 591 2380</a>
-        <span><i class="fas fa-map-marker-alt"></i> La América, Medellín</span>
+        <a href="https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6" target="_blank"><i class="fas fa-map-marker-alt"></i> Cra 79 #44a-20, La América</a>
       </div>
       <div class="top-social">
         <a href="https://www.instagram.com/lauraq_spa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -58,7 +57,6 @@
           <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#galeria">Galería</a></li>
-          <li><a href="#testimonios">Reseñas</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -166,6 +164,9 @@
         <span class="section-label">Lo que ofrecemos</span>
         <h2>Nuestros servicios</h2>
         <p>Desde tratamientos faciales hasta nail spa, tenemos todo lo que necesitas para verte y sentirte increíble.</p>
+        <button id="open-price-list" class="btn btn-outline-primary">
+          <i class="fas fa-list-ul"></i> Ver todos los servicios y precios
+        </button>
       </div>
 
       <div class="services-tabs" data-aos="fade-up" data-aos-delay="100">
@@ -426,62 +427,6 @@
     </div>
   </section>
 
-  <!-- TESTIMONIOS -->
-  <section id="testimonios">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-label">Lo que dicen nuestras clientas</span>
-        <h2>Reseñas</h2>
-      </div>
-      <div class="testimonios-carousel" data-aos="fade-up" data-aos-delay="100">
-        <div class="testimonios-track">
-          <div class="testimonio-card">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"Desde que descubrí Laura Q Spa, se convirtió en mi lugar favorito para desconectarme del estrés. Salí completamente renovada. La atención es impecable y el ambiente súper acogedor. ¡Volveré sin duda!"</p>
-            <div class="testimonio-author">
-              <img src="img/team-2.jpg" alt="Camila Pérez" />
-              <div>
-                <strong>Camila Pérez</strong>
-                <span>Estudiante universitaria</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonio-card">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"Mi esposa me regaló una sesión y fue una experiencia increíble. Nunca había visitado un spa y quedé impresionado con el profesionalismo. Me explicaron todo y salí sintiéndome revitalizado. ¡100% recomendado!"</p>
-            <div class="testimonio-author">
-              <img src="img/team-2.jpg" alt="Daniel Álvarez" />
-              <div>
-                <strong>Daniel Álvarez</strong>
-                <span>Ingeniero de sistemas</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonio-card">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"Me hice el diseño de cejas y el lifting de pestañas y quedé feliz. El lugar es precioso, muy tranquilo. Lo que más me gusta es que cada tratamiento es personalizado. ¡Es un verdadero oasis en Medellín!"</p>
-            <div class="testimonio-author">
-              <img src="img/team-2.jpg" alt="Leidy Holguín" />
-              <div>
-                <strong>Leidy Holguín</strong>
-                <span>Contadora</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonios-controls">
-          <button id="test-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-          <div class="testimonios-dots">
-            <span class="t-dot active"></span>
-            <span class="t-dot"></span>
-            <span class="t-dot"></span>
-          </div>
-          <button id="test-next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section id="faq">
     <div class="container faq-container">
@@ -508,7 +453,7 @@
         </div>
         <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
           <button class="faq-question">¿Dónde están ubicados exactamente? <i class="fas fa-plus"></i></button>
-          <div class="faq-answer"><p>Estamos ubicados en La América, Medellín, Antioquia. Al reservar tu cita te enviamos la dirección exacta y el enlace de Google Maps para que llegues fácilmente.</p></div>
+          <div class="faq-answer"><p>Estamos ubicados en la Cra 79 #44a-20, La América, Medellín, Antioquia. <a href="https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6" target="_blank">Ver en Google Maps</a>.</p></div>
         </div>
       </div>
     </div>
@@ -530,17 +475,10 @@
             </div>
           </div>
           <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <strong>Teléfono</strong>
-              <a href="tel:+5745912380">591 2380</a>
-            </div>
-          </div>
-          <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
             <div>
               <strong>Ubicación</strong>
-              <span>La América, Medellín, Antioquia</span>
+              <a href="https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6" target="_blank">Cra 79 #44a-20, La América, Medellín, Antioquia</a>
             </div>
           </div>
           <div class="contact-item">
@@ -595,7 +533,6 @@
         <ul>
           <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#galeria">Galería</a></li>
-          <li><a href="#testimonios">Reseñas</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -603,17 +540,102 @@
       <div class="footer-contact">
         <h4>Contacto</h4>
         <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573147388239">314 738 8239</a></p>
-        <p><i class="fas fa-phone"></i> <a href="tel:+5745912380">591 2380</a></p>
-        <p><i class="fas fa-map-marker-alt"></i> La América, Medellín</p>
+        <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6" target="_blank">Cra 79 #44a-20, La América</a></p>
         <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary btn-sm footer-btn">
           <i class="fab fa-whatsapp"></i> Agendar cita
         </a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Laura Quintero Casa Spa · La América, Medellín · Todos los derechos reservados.</p>
+      <p>© 2026 Todos los derechos reservados. Desarrollado por: <a href="https://ssaragon.com/" target="_blank">Servisoluciones Aragón</a></p>
     </div>
   </footer>
+
+  <!-- PRICE LIST MODAL -->
+  <div id="price-modal">
+    <div class="price-modal-inner">
+      <button id="price-modal-close" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      <div class="price-modal-header">
+        <span class="section-label">Lista completa</span>
+        <h2>Todos nuestros servicios</h2>
+        <p>Precios vigentes. Escríbenos por WhatsApp para agendar o resolver dudas.</p>
+      </div>
+      <div class="price-modal-body">
+        <div class="price-category">
+          <h3><i class="fas fa-spa"></i> Facial</h3>
+          <ul class="price-list">
+            <li><span>Terapia Puré Skin (Limpieza Facial Profunda)</span><strong>$140.000</strong></li>
+            <li><span>Terapia Hydra Skin (Hydrafacial)</span><strong>$220.000</strong></li>
+            <li><span>Terapia detox anti acné</span><strong>$150.000</strong></li>
+            <li><span>Terapia detox de espalda</span><strong>$160.000</strong></li>
+            <li><span>Terapia Glow Facial (Porcelanización facial)</span><strong>$110.000</strong></li>
+            <li><span>Terapia Aqua Glow (Hidratación Facial)</span><strong>$85.000</strong></li>
+            <li><span>Lifting Facial (Rejuvenecimiento)</span><strong>$180.000</strong></li>
+          </ul>
+        </div>
+        <div class="price-category">
+          <h3><i class="fas fa-feather"></i> Cera | Hilo</h3>
+          <ul class="price-list">
+            <li><span>Cejas Hilo o cera</span><strong>$20.000</strong></li>
+            <li><span>Bigote Hilo o cera</span><strong>$10.000</strong></li>
+            <li><span>Axilas</span><strong>$20.000</strong></li>
+            <li><span>Bikini completo</span><strong>$60.000</strong></li>
+            <li><span>Media pierna</span><strong>$55.000</strong></li>
+            <li><span>Pierna completa</span><strong>$100.000</strong></li>
+            <li><span>Diseño de cejas</span><strong>$35.000</strong></li>
+          </ul>
+        </div>
+        <div class="price-category">
+          <h3><i class="fas fa-eye"></i> Pestañas | Cejas</h3>
+          <ul class="price-list">
+            <li><span>Pestañas pelo a pelo Clásicas</span><strong>$130.000</strong></li>
+            <li><span>Pestañas pelo a pelo Híbridas</span><strong>$145.000</strong></li>
+            <li><span>Pestañas pelo a pelo Volumen ruso</span><strong>$160.000</strong></li>
+            <li><span>Pestañas pelo a pelo EF Hawaiano</span><strong>$170.000</strong></li>
+            <li><span>Laminado de cejas</span><strong>$90.000</strong></li>
+            <li><span>Lifting de pestañas</span><strong>$110.000</strong></li>
+            <li><span>Hidralips</span><strong>$75.000</strong></li>
+          </ul>
+        </div>
+        <div class="price-category">
+          <h3><i class="fas fa-kiss-wink-heart"></i> Micro Labios</h3>
+          <ul class="price-list">
+            <li><span>Micro Labios</span><strong>$380.000</strong></li>
+          </ul>
+        </div>
+        <div class="price-category">
+          <h3><i class="fas fa-dumbbell"></i> Corporal</h3>
+          <ul class="price-list">
+            <li><span>Masaje de relajación</span><strong>$100.000</strong></li>
+            <li><span>Bronceado con aerógrafo</span><strong>$150.000</strong></li>
+            <li><span>1 sesión de masaje de reducción</span><strong>$75.000</strong></li>
+            <li><span>1 sesión de masaje y meso</span><strong>$90.000</strong></li>
+          </ul>
+        </div>
+        <div class="price-category">
+          <h3><i class="fas fa-hand-sparkles"></i> Nails Spa</h3>
+          <ul class="price-list">
+            <li><span>Manos tradicional</span><strong>$26.000</strong></li>
+            <li><span>Pies tradicional</span><strong>$30.000</strong></li>
+            <li><span>Manos semipermanente</span><strong>$46.000</strong></li>
+            <li><span>Pies semipermanente</span><strong>$50.000</strong></li>
+            <li><span>Manos Base Ruber</span><strong>$60.000</strong></li>
+            <li><span>Baño Acrílico</span><strong>$70.000</strong></li>
+            <li><span>Polygel</span><strong>$75.000</strong></li>
+            <li><span>Press On (softgel)</span><strong>$95.000</strong></li>
+            <li><span>Nail Art</span><strong>$5.000 c/u</strong></li>
+            <li><span>Retiro</span><strong>$10.000</strong></li>
+            <li><span>Retiro completo</span><strong>$15.000</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="price-modal-footer">
+        <a href="https://wa.me/573147388239?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- n8n Chat container -->
   <div id="n8n-chat"></div>
