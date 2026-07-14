@@ -6,8 +6,8 @@ Notas de contexto para retomar el trabajo en este sitio en sesiones futuras. Sit
 
 - Nombre: **Laura Quintero Spa** (renombrado desde "Laura Quintero Casa Spa" — el título, meta tags y todos los `alt=""` del sitio ya usan el nombre corto; si se encuentra "Casa Spa" en algún lado es texto desactualizado)
 - WhatsApp: +57 314 738 8239 — `https://wa.me/573147388239`
-- Dirección: Cra 79 #44a-20, La América, Medellín, Antioquia
-- Google Maps: `https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6` (coords exactas: 6.2509277,-75.5973354, usadas en el iframe embebido de Contáctanos)
+- Dirección: Cra 79D #44-32, La América, Medellín, Antioquia (actualizada 2026-07-14, antes era Cra 79 #44a-20)
+- Google Maps: `https://maps.app.goo.gl/jps6q8G7aJxxu2EB9` (coords exactas: 6.2510664,-75.6015074, usadas en el iframe embebido de Contáctanos)
 - Instagram: @lauraq_spa
 - Horario: Lunes a viernes 10:00 a.m.–5:00 p.m. · Sábados 9:00 a.m.–2:00 p.m. · Domingos cerrado (**no se muestra en el sitio público**, solo vive en `Promp n8n.xml` para el chatbot)
 - Dominio de producción: `lauraqspa.com` (usado en `robots.txt`, `sitemap.xml`, canonical y meta OG/Twitter)

@@ -90,7 +90,7 @@ Las instrucciones del bot viven en **`Promp n8n.xml`** (raíz del proyecto), en 
 ## 📞 Contacto del negocio
 
 - WhatsApp: +57 314 738 8239 — `https://wa.me/573147388239`
-- Ubicación: [Cra 79 #44a-20, La América, Medellín, Antioquia](https://maps.app.goo.gl/iub6yLsYjbPrn9Ak6)
+- Ubicación: [Cra 79D #44-32, La América, Medellín, Antioquia](https://maps.app.goo.gl/jps6q8G7aJxxu2EB9)
 - Instagram: [@lauraq_spa](https://www.instagram.com/lauraq_spa/)
 - Facebook, TikTok: enlazados en top-bar, footer y sección Contacto
 
