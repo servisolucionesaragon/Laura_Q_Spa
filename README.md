@@ -12,6 +12,7 @@ Sitio web de **Laura Quintero Spa**, spa de belleza y bienestar en La América, 
 - **Sección Nosotros** con imagen y lista de valores diferenciales
 - **Servicios** en tabs por categoría (Facial, Corporal, Cejas & Pestañas, Nails, Depilación), con fotos reales de tratamientos en cada tarjeta (clase `.service-card--photo`)
 - **Modal "Ver todos los servicios y precios"** (`#price-modal`) con el catálogo completo agrupado por categoría: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal, Nails Spa
+- **Productos** (`#productos`): catálogo de skincare (foto, nombre, descripción, precio) renderizado dinámicamente desde `js/products-data.js` — ver sección [🛍️ Catálogo de productos](#-catálogo-de-productos)
 - **Proceso en 3 pasos** (Agendar → Experiencia → Resultados)
 - **Galería con lightbox**, swipe táctil y navegación por teclado
 - **FAQ** con acordeón animado
@@ -31,7 +32,8 @@ Sitio web de **Laura Quintero Spa**, spa de belleza y bienestar en La América, 
 index.html               ← Página principal (incluye el modal de precios)
 mantenimiento.html        ← Página de "en mantenimiento" (fallback, no enlazada; bloqueada en robots.txt)
 css/style.css              ← Único stylesheet — variables de marca en :root, resto organizado por sección
-js/main.js                 ← Slider, tabs de servicios, lightbox de galería, modal de precios, FAQ, menú móvil
+js/main.js                 ← Slider, tabs de servicios, render de productos, lightbox de galería, modal de precios, FAQ, menú móvil
+js/products-data.js        ← Datos del catálogo de productos (array `PRODUCTS`) — ver sección Catálogo de productos
 robots.txt, sitemap.xml    ← SEO (dominio lauraqspa.com)
 Colores.txt                ← Paleta de referencia original del cliente (no se despliega)
 Promp n8n.xml               ← Prompt del chatbot (⚠️ ignorado por git — ver sección Chatbot)
@@ -47,6 +49,7 @@ img/
   CERA-HILO/                         ← Fotos reales: cejas, pestañas, depilación
   Corporal/                          ← Fotos reales: masajes, bronceado
   NAILS/                             ← Fotos reales: manicura y pedicura
+  Productos/                         ← Fotos de los productos de skincare en venta
 ```
 
 ## 🎨 Paleta de colores
@@ -72,6 +75,24 @@ Fuente: `Colores.txt` y el logo oficial de la marca.
 El modal "Ver todos los servicios y precios" (`#price-modal` en `index.html`) es la **única fuente pública** de precios del sitio. Debe mantenerse sincronizado manualmente con el `<catalogo>` de `Promp n8n.xml` (el chatbot tiene su propia copia porque ese archivo no se despliega con el sitio). Si cambian precios o servicios, actualizar **ambos** archivos.
 
 Categorías actuales: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal, Nails Spa.
+
+## 🛍️ Catálogo de productos
+
+La sección "Nuestros productos" (`#productos` en `index.html`) se renderiza dinámicamente en `js/main.js` a partir del array `PRODUCTS` definido en **`js/products-data.js`**. Para agregar, quitar o editar un producto solo hay que tocar ese array — no hace falta duplicar HTML de tarjetas.
+
+Cada producto necesita:
+```js
+{
+  foto: 'img/Productos/Nombre del archivo.jpeg', // debe existir en img/Productos/
+  nombre: 'Nombre del producto',
+  descripcion: 'Texto corto',
+  precio: '$120.000' // ya formateado, con el signo $ y los puntos de miles
+}
+```
+
+Se optó por un archivo `.js` con un array (en vez de un `products.json` cargado con `fetch`) porque el sitio se prueba abriendo `index.html` directamente con doble clic (`file://`), y `fetch()` de un `.json` local falla ahí por CORS — el `<script>` no tiene esa restricción y funciona igual en producción.
+
+El botón "Pedir" de cada tarjeta abre WhatsApp con el nombre del producto precargado en el mensaje.
 
 ## 🤖 Chatbot n8n
 

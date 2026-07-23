@@ -59,6 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Render Productos ──────────────────────────
+  const productsGrid = document.getElementById('products-grid');
+  if (productsGrid && typeof PRODUCTS !== 'undefined') {
+    productsGrid.innerHTML = PRODUCTS.map((p, i) => `
+      <div class="product-card" data-aos="fade-up" data-aos-delay="${i * 80}">
+        <div class="product-photo"><img src="${p.foto}" alt="${p.nombre}" loading="lazy" /></div>
+        <div class="product-body">
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion}</p>
+          <div class="product-footer">
+            <span class="product-price">${p.precio}</span>
+            <a href="https://wa.me/573147388239?text=${encodeURIComponent('Hola, quiero más información sobre ' + p.nombre)}" target="_blank" class="product-link">
+              <i class="fab fa-whatsapp"></i> Pedir
+            </a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    if (typeof AOS !== 'undefined') AOS.refresh();
+  }
+
   // ── Hero Slider ───────────────────────────────
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.slider-dots .dot');

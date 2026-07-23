@@ -508,6 +508,48 @@ section { padding: 90px 0; }
 .service-card--photo .service-body { padding: 0 28px; }
 
 /* ===========================
+   PRODUCTOS
+=========================== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,120,162,.06);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.product-photo { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: var(--primary-pale); }
+.product-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.product-card:hover .product-photo img { transform: scale(1.08); }
+.product-body { padding: 24px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+.product-body h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--dark); }
+.product-body p { color: var(--gray); font-size: .9rem; line-height: 1.6; margin-bottom: 20px; flex: 1; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.product-price { color: var(--primary-dark); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+.product-link:hover { background: var(--primary-dark); color: var(--white); }
+
+/* ===========================
    PROCESO
 =========================== */
 #proceso { background: var(--white); }
@@ -806,6 +848,7 @@ section { padding: 90px 0; }
   .proceso-grid { grid-template-columns: 1fr; gap: 8px; }
   .proceso-connector { height: 32px; width: 2px; margin: 0 auto; background: linear-gradient(180deg, var(--primary-light), var(--primary-pale)); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
   .contacto-map iframe { height: 320px; }
@@ -835,6 +878,7 @@ section { padding: 90px 0; }
   .about-grid { grid-template-columns: 1fr; }
   .about-badge { bottom: 12px; right: 12px; }
   .services-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
   .top-contacts { display: none; }
