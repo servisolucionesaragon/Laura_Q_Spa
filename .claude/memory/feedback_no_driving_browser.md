@@ -1,8 +1,10 @@
 ---
 name: feedback-no-driving-browser
 description: User prefers to test/verify the site themselves in their own browser rather than have Claude drive browser automation tools
-metadata:
+metadata: 
+  node_type: memory
   type: feedback
+  originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
 ---
 
 El usuario, repetidamente, rechazó llamadas a herramientas de automatización de navegador (mcp__claude-in-chrome__*) diciendo "yo lo pruebo/reviso en el navegador" o "yo pruebo el sitio y te aviso".

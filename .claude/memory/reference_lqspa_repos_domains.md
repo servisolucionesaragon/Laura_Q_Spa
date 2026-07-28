@@ -1,8 +1,10 @@
 ---
 name: reference-lqspa-repos-domains
-description: External systems/URLs relevant to the Laura Q Spa project — GitHub repo, n8n instance, target domain, business links
-metadata:
+description: "External systems/URLs relevant to the Laura Q Spa project — GitHub repo, n8n instance, target domain, business links"
+metadata: 
+  node_type: memory
   type: reference
+  originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
 ---
 
 - Repositorio del sitio: `https://github.com/servisolucionesaragon/Laura_Q_Spa` (rama `main`)

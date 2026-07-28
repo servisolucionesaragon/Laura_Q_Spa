@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
-  modified: 2026-07-23T01:56:03.091Z
+  modified: 2026-07-28T17:54:36.937Z
 ---
 
 Sitio web para **Laura Quintero Spa** (spa en La América, Medellín — la marca se acortó de "Laura Quintero Casa Spa" a "Laura Quintero Spa" durante el proyecto, ya reflejado en todo el sitio), cliente de Servisoluciones Aragón (ver [[user-role-servisoluciones-aragon]]). Se hizo un rediseño completo (paleta, fotos reales, SEO, chatbot) durante julio 2026, con iteraciones continuas de contenido y ajustes visuales.
@@ -16,5 +16,7 @@ Sitio web para **Laura Quintero Spa** (spa en La América, Medellín — la marc
 
 **Por confirmar con el usuario en el futuro**:
 - Si hace falta agregar el horario de atención también al sitio público (por ahora solo vive en el prompt del chatbot, `Promp n8n.xml`).
+
+**2026-07-28**: se **eliminó la categoría Nails Spa por completo** (el spa ya no ofrece servicios de uñas): tab de servicios, modal de precios, galería, footer, meta descriptions, carpeta `img/NAILS/` y el catálogo del chatbot en `Promp n8n.xml`. **Pendiente**: el usuario debe repegar el prompt actualizado en el nodo de n8n para que el bot deje de ofrecer uñas. No reintroducir Nails sin pedido explícito.
 
 **2026-07-22**: se agregó sección "Productos" (catálogo de skincare: 6 productos con foto, nombre, descripción, precio), con los datos separados en `js/products-data.js` en vez de HTML hardcodeado o `products.json`+`fetch`, porque el usuario prueba el sitio abriendo `index.html` directo (`file://`) y `fetch()` de JSON local falla ahí por CORS. Detalle completo en `.claude/CONTEXT.md` y `README.md` del repo (sección "Catálogo de productos").

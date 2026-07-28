@@ -1,8 +1,10 @@
 ---
 name: feedback-git-commit-push-pattern
-description: User wanted explicit confirmation before pushing early on, then switched to direct "hacer commit/push a git" instructions once trust was established
-metadata:
+description: "User wanted explicit confirmation before pushing early on, then switched to direct \"hacer commit/push a git\" instructions once trust was established"
+metadata: 
+  node_type: memory
   type: feedback
+  originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
 ---
 
 Al principio del trabajo en este repo, se preguntó explícitamente antes de hacer `git push` (acción visible/compartida) porque el repo remoto ya tenía historial previo del cliente. Tras varias rondas de trabajo correcto, el usuario empezó a pedir directamente "hacer commit/push a git" sin más detalle, confiando en que se revisa lo que se va a subir antes de commitear.

@@ -1,8 +1,10 @@
 ---
 name: user-role-servisoluciones-aragon
-description: User runs Servisoluciones Aragón, a web/automation agency; this repo is a client project (Laura Quintero Spa), not the user's own business
-metadata:
+description: "User runs Servisoluciones Aragón, a web/automation agency; this repo is a client project (Laura Quintero Spa), not the user's own business"
+metadata: 
+  node_type: memory
   type: user
+  originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
 ---
 
 El usuario es de **Servisoluciones Aragón** (ssaragon.com), una agencia que construye sitios web y automatizaciones (n8n) para clientes. Este directorio (`Laura Q Spa/Web`) es un proyecto de **cliente activo**, no un proyecto personal del usuario — el spa "Laura Quintero Spa" es el cliente final.

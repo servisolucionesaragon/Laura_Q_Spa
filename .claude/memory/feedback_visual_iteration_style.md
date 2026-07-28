@@ -1,8 +1,10 @@
 ---
 name: feedback-visual-iteration-style
 description: User iterates on visual/sizing details with short qualitative feedback (no exact numbers); respond with concrete values and keep iterating quickly
-metadata:
+metadata: 
+  node_type: memory
   type: feedback
+  originSessionId: 83f469f4-823b-467e-b34b-9ab3909fd984
 ---
 
 Cuando el usuario da feedback visual (tamaños, espaciados, alineación), lo hace de forma muy corta y sin números exactos: "muy grande", "muy chico", "no está centrado", "quedó más pequeño que el texto". Nunca da valores en píxeles.

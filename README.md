@@ -100,7 +100,7 @@ Configurado en `index.html` (al final del `<body>`) con:
 - Nombre: 𝑸𝒄𝒉𝒂𝒕 en línea 24/7
 - Subtítulo: Bienvenid@ a 𝑳𝑨𝑼𝑹𝑨 𝑸 𝙎𝙋𝘼
 
-Las instrucciones del bot viven en **`Promp n8n.xml`** (raíz del proyecto), en formato XML válido. **No se sube a git** (está en `.gitignore`) porque es configuración interna de negocio — se pega manualmente en el nodo del chatbot en n8n. Contiene:
+Las instrucciones del bot viven en **`Promp n8n.xml`** (raíz del proyecto), en formato XML válido. **No se sube a git** (está en `.gitignore`) porque es configuración interna de negocio — se pega manualmente en el nodo del chatbot en n8n. ⚠️ **Cualquier cambio en este archivo NO llega solo al bot**: hay que copiar el contenido actualizado y repegarlo en el nodo del agente en `n8n.ssaragon.com` (última sincronización pendiente/hecha: retiro de Nails Spa, julio 2026). Contiene:
 - `<negocio>`: dirección, Google Maps, WhatsApp, Instagram, horario de atención, métodos de pago, política de reserva, duración de sesiones.
 - `<catalogo>`: la misma lista de precios del modal del sitio (única fuente de verdad, sin datos incompletos).
 - `<rules>`: comportamiento — incluye una regla para no volcar todo el catálogo de una vez (primero pregunta por categoría) y una regla anti prompt-injection.
