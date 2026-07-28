@@ -10,8 +10,8 @@ Sitio web de **Laura Quintero Spa**, spa de belleza y bienestar en La América, 
 - **Hero slider** con 2 slides, transición suave, flechas y puntos de navegación
 - **Trust bar** con badges de confianza (10 años, 5 estrellas, cosmiatra, 500+ clientas)
 - **Sección Nosotros** con imagen y lista de valores diferenciales
-- **Servicios** en tabs por categoría (Facial, Corporal, Cejas & Pestañas, Nails, Depilación), con fotos reales de tratamientos en cada tarjeta (clase `.service-card--photo`)
-- **Modal "Ver todos los servicios y precios"** (`#price-modal`) con el catálogo completo agrupado por categoría: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal, Nails Spa
+- **Servicios** en tabs por categoría (Facial, Corporal, Cejas & Pestañas, Depilación), con fotos reales de tratamientos en cada tarjeta (clase `.service-card--photo`)
+- **Modal "Ver todos los servicios y precios"** (`#price-modal`) con el catálogo completo agrupado por categoría: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal
 - **Productos** (`#productos`): catálogo de skincare (foto, nombre, descripción, precio) renderizado dinámicamente desde `js/products-data.js` — ver sección [🛍️ Catálogo de productos](#-catálogo-de-productos)
 - **Proceso en 3 pasos** (Agendar → Experiencia → Resultados)
 - **Galería con lightbox**, swipe táctil y navegación por teclado
@@ -48,7 +48,6 @@ img/
   about.jpg, team-2.jpg              ← Sección Nosotros / galería
   CERA-HILO/                         ← Fotos reales: cejas, pestañas, depilación
   Corporal/                          ← Fotos reales: masajes, bronceado
-  NAILS/                             ← Fotos reales: manicura y pedicura
   Productos/                         ← Fotos de los productos de skincare en venta
 ```
 
@@ -74,7 +73,7 @@ Fuente: `Colores.txt` y el logo oficial de la marca.
 
 El modal "Ver todos los servicios y precios" (`#price-modal` en `index.html`) es la **única fuente pública** de precios del sitio. Debe mantenerse sincronizado manualmente con el `<catalogo>` de `Promp n8n.xml` (el chatbot tiene su propia copia porque ese archivo no se despliega con el sitio). Si cambian precios o servicios, actualizar **ambos** archivos.
 
-Categorías actuales: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal, Nails Spa.
+Categorías actuales: Facial, Cera | Hilo, Pestañas | Cejas, Micropigmentación, Corporal. (La categoría Nails Spa se retiró del negocio en julio 2026 — no debe aparecer ni en el sitio ni en el chatbot.)
 
 ## 🛍️ Catálogo de productos
 
