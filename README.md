@@ -5,6 +5,26 @@ Sitio web de **Laura Quintero Spa**, spa de belleza y bienestar en La América, 
 - **Producción**: [lauraqspa.com](https://lauraqspa.com/)
 - **Repositorio**: [servisolucionesaragon/Laura_Q_Spa](https://github.com/servisolucionesaragon/Laura_Q_Spa) (rama `main`)
 
+## 🖥️ App de gestión (`/app/`)
+
+Este repositorio es un **monorepo**: además del sitio estático de la raíz (de abajo),
+la carpeta **`app/`** contiene una app Laravel 10 completa (TPV Estética y SPA,
+adaptada del catálogo de apps del portal SSA) para la gestión interna del spa —
+citas, tratamientos, productos, clientes, bonos y ventas.
+
+- **Producción de la app**: `https://app.lauraqspa.com` (subdominio propio, **no**
+  Cloudflare) — corre en el mismo VPS Oracle Cloud que el resto de apps del portal
+  SSA (`204.216.139.152`), con su propia base de datos y certificado SSL.
+- **No confundir con el sitio estático**: `lauraqspa.com` (raíz) sigue sirviéndose
+  por Cloudflare, sin relación con `app/` — son dos despliegues completamente
+  independientes que conviven en el mismo repositorio solo para tener el código en
+  un único lugar.
+- `app/` tiene su propio `.gitignore` (vendor, `.env`, cachés, uploads de
+  `storage/app/public` y `storage/app/backups` quedan fuera de git a propósito).
+- Detalle técnico completo (BD, `.env`, nginx, credenciales) en
+  `Aplicaciones web/.claude/server-context.md` del NAS del portal SSA, sección
+  "App dedicada: Laura Q Spa".
+
 ## ✅ Funcionalidades
 
 - **Hero slider** con 2 slides, transición suave, flechas y puntos de navegación
@@ -129,6 +149,11 @@ Las instrucciones del bot viven en **`Promp n8n.xml`** (raíz del proyecto), en 
 - Repo: `https://github.com/servisolucionesaragon/Laura_Q_Spa`, rama `main`.
 - Hay una rama `cloudflare/workers-autoconfig` (con `wrangler.jsonc`, worker `laura-q-spa`) para despliegue en Cloudflare Workers — **no modificar** salvo pedido explícito.
 - `.gitignore` excluye archivos internos de negocio: `Thumbs.db`, `desktop.ini`, `Laura Q Spa N8N.json`, `Laura Q Spa.json` (exports de workflows n8n), `Laura Q Spa VS Code.code-workspace`, `Promp n8n.xml`.
+- La carpeta `app/` (ver sección "App de gestión" arriba) **no se despliega junto con
+  el sitio**: en el VPS Oracle Cloud se clona este mismo repo completo en
+  `/var/www/lauraqspa`, pero nginx sirve solo `app/public` bajo el dominio
+  `app.lauraqspa.com` — el sitio estático de la raíz del repo queda presente en ese
+  clon pero no se sirve desde ese vhost (sigue viviendo solo en Cloudflare).
 
 ## 🧠 Contexto para retomar el proyecto
 

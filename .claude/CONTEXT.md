@@ -54,6 +54,34 @@ Fuente: `Colores.txt` (raíz del proyecto) + el logo oficial de la marca.
 - `.gitignore` excluye: `Thumbs.db`, `desktop.ini`, `Laura Q Spa N8N.json`, `Laura Q Spa.json` (exports de workflows de n8n), `Laura Q Spa VS Code.code-workspace`, `Promp n8n.xml`.
 - `mantenimiento.html` sigue en el repo como página de fallback (no enlazada desde `index.html`), y está bloqueada en `robots.txt` (`Disallow: /mantenimiento.html`).
 
+## App de gestión en `app/` (agregada 2026-07-29)
+
+El repo pasó a ser un monorepo: `app/` contiene una app Laravel 10 completa (TPV
+Estética y SPA del portal SSA, adaptada) para la gestión interna del spa
+(citas/tratamientos/productos/clientes/bonos/ventas), pedida por el cliente como
+sistema de punto de venta.
+
+- Código base descargado de `/var/www/tpv-estetica` (VPS Oracle Cloud del portal
+  SSA, `204.216.139.152`) — no del ZIP viejo del NAS, siguiendo la convención ya
+  establecida del portal de usar siempre la copia real del servidor.
+- **Completamente independiente del sitio estático**: se despliega en
+  `app.lauraqspa.com` (subdominio propio, DNS apuntando directo al VPS Oracle,
+  fuera de Cloudflare) usando el mismo VPS que las demás apps del portal SSA, no
+  Cloudflare Pages/Workers. El sitio estático de la raíz sigue sirviéndose 100%
+  igual que antes.
+- `app/.gitignore` propio (patrón ya validado en el repo `Mac_Plaza_11` del
+  portal): excluye `vendor/`, `.env`, `storage/app/public/*` y
+  `storage/app/backups` (uploads/backups reales, nunca deben ir a git),
+  `bootstrap/cache/*.php` y las cachés de `storage/framework/*`, con `.gitkeep`
+  para preservar la estructura de carpetas vacías.
+- Instancia desplegada con **credenciales de administrador nuevas y base de datos
+  limpia** (sin los datos demo de fábrica de TPV Estética) — decisión explícita
+  del usuario, distinto del patrón de Mac Plaza 11 (que sí clonó datos reales
+  existentes).
+- Detalle técnico completo (BD, `.env`, nginx, SSL, credenciales) vive en
+  `Aplicaciones web/.claude/server-context.md` del NAS del portal SSA, sección
+  "App dedicada: Laura Q Spa" — no duplicado aquí.
+
 ## Archivos clave
 
 ```
