@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Providers;
+
+use App\Models\ConfiguracionEmpresa;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        Schema::defaultStringLength(191);
+        Paginator::useBootstrapFive();
+
+        // Compartir la configuración de la empresa con todas las vistas
+        View::composer('*', function ($view) {
+            $config = null;
+            try {
+                if (Schema::hasTable('configuracion_empresa')) {
+                    $config = ConfiguracionEmpresa::first();
+                }
+            } catch (\Throwable $e) {
+                $config = null;
+            }
+            $view->with('configEmpresa', $config);
+        });
+    }
+}
