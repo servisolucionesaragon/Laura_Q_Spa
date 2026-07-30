@@ -50,7 +50,7 @@ Fuente: `Colores.txt` (raíz del proyecto) + el logo oficial de la marca.
 
 - Repo: `https://github.com/servisolucionesaragon/Laura_Q_Spa`, rama `main`.
 - El repo remoto ya tenía historial previo (una página placeholder "en mantenimiento" + rama `cloudflare/workers-autoconfig` con `wrangler.jsonc`, worker name `laura-q-spa`, sin dominio custom configurado ahí). Se fusionó con `--allow-unrelated-histories -X ours` en vez de forzar el push, para no perder ese historial.
-- **No tocar la rama `cloudflare/workers-autoconfig`** salvo que el cliente lo pida explícitamente.
+- **No tocar la rama `cloudflare/workers-autoconfig`** salvo que el cliente lo pida explícitamente. Única excepción hecha hasta ahora (2026-07-30, pedido explícito): se agregó `.assetsignore` ahí (junto a `wrangler.jsonc`, que tiene `assets.directory: "."` — sube el repo completo como sitio estático) excluyendo `/app/` y `/.claude/`, para que si esa rama alguna vez se sincroniza con `main` no termine publicando la app Laravel dedicada ni las notas internas de colaboración como archivos estáticos descargables.
 - `.gitignore` excluye: `Thumbs.db`, `desktop.ini`, `Laura Q Spa N8N.json`, `Laura Q Spa.json` (exports de workflows de n8n), `Laura Q Spa VS Code.code-workspace`, `Promp n8n.xml`.
 - `mantenimiento.html` sigue en el repo como página de fallback (no enlazada desde `index.html`), y está bloqueada en `robots.txt` (`Disallow: /mantenimiento.html`).
 
