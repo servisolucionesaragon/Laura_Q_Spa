@@ -260,6 +260,7 @@ class BackupService
             'bono_consumos', 'bonos',
             'cita_servicios', 'citas',
             'movimientos_stock',
+            'movimientos_caja', 'cajas',
         ];
 
         // Catálogos: se borran solo en hard reset
@@ -267,7 +268,7 @@ class BackupService
             'clientes', 'bonos_plantillas',
             'productos', 'proveedores', 'categorias_productos',
             'tratamientos', 'categorias_tratamientos',
-            'cabinas',
+            'cabinas', 'metodos_pago',
         ];
 
         $resumen = ['operacional' => [], 'catalogos' => [], 'usuarios' => 0, 'configuracion' => false];
@@ -298,6 +299,16 @@ class BackupService
             // Resetear configuración a valores por defecto
             DB::table('configuracion_empresa')->delete();
             $resumen['configuracion'] = true;
+
+            // Re-sembrar métodos de pago básicos: sin al menos uno, el TPV
+            // queda inutilizable (la validación de venta exige que el método
+            // elegido exista en la tabla).
+            $ahora = now();
+            DB::table('metodos_pago')->insert([
+                ['nombre' => 'efectivo', 'activo' => true, 'created_at' => $ahora, 'updated_at' => $ahora],
+                ['nombre' => 'tarjeta', 'activo' => true, 'created_at' => $ahora, 'updated_at' => $ahora],
+                ['nombre' => 'transferencia', 'activo' => true, 'created_at' => $ahora, 'updated_at' => $ahora],
+            ]);
 
             // Limpiar logos
             $logos = storage_path('app/public/logos');
