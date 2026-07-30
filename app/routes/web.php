@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\PwaController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\TratamientoController;
@@ -23,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
 });
+
+// PWA (instalable en el navegador) — públicas, sin auth
+Route::get('manifest.webmanifest', [PwaController::class, 'manifest'])->name('pwa.manifest');
+Route::get('pwa-icon/{size}.png', [PwaController::class, 'icon'])->whereIn('size', ['192', '512'])->name('pwa.icon');
 
 // Auth
 Route::middleware('guest')->group(function () {
