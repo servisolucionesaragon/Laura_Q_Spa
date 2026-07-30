@@ -21,6 +21,11 @@ citas, tratamientos, productos, clientes, bonos y ventas.
   un único lugar.
 - `app/` tiene su propio `.gitignore` (vendor, `.env`, cachés, uploads de
   `storage/app/public` y `storage/app/backups` quedan fuera de git a propósito).
+- **Instalable como app móvil (PWA)**: `PwaController` expone
+  `/manifest.webmanifest` y `/pwa-icon/{192|512}.png` (públicas, sin login),
+  generando el ícono a partir del logo/color de marca configurados en
+  Configuración — "Agregar a pantalla de inicio" desde el navegador en
+  Android/iOS usa el branding real, sin archivos de ícono fijos en el repo.
 - Detalle técnico completo (BD, `.env`, nginx, credenciales) en
   `Aplicaciones web/.claude/server-context.md` del NAS del portal SSA, sección
   "App dedicada: Laura Q Spa".
