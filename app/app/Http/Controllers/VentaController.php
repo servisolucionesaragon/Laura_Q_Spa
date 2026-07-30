@@ -170,11 +170,20 @@ class VentaController extends Controller
 
         $venta->load('items');
 
+        $carritoInicial = $venta->items->map(fn (VentaItem $it) => [
+            'tipo'        => $it->tipo,
+            'id'          => $it->referencia_id,
+            'descripcion' => $it->descripcion,
+            'precio'      => (float) $it->precio_unitario,
+            'cantidad'    => (float) $it->cantidad,
+        ])->values();
+
         return view('ventas.edit', [
-            'venta'        => $venta,
-            'tratamientos' => Tratamiento::activos()->orderBy('nombre')->get(),
-            'productos'    => Producto::activos()->paraVenta()->orderBy('nombre')->get(),
-            'metodosPago'  => MetodoPago::activos()->orderBy('nombre')->get(),
+            'venta'          => $venta,
+            'carritoInicial' => $carritoInicial,
+            'tratamientos'   => Tratamiento::activos()->orderBy('nombre')->get(),
+            'productos'      => Producto::activos()->paraVenta()->orderBy('nombre')->get(),
+            'metodosPago'    => MetodoPago::activos()->orderBy('nombre')->get(),
         ]);
     }
 
