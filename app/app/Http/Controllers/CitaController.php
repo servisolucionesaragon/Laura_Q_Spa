@@ -17,6 +17,17 @@ class CitaController extends Controller
 {
     public function index(Request $request): View
     {
+        $vista = $request->get('vista', 'semana');
+
+        return match ($vista) {
+            'mes' => $this->vistaMes($request),
+            'dia' => $this->vistaDia($request),
+            default => $this->vistaSemana($request),
+        };
+    }
+
+    protected function vistaSemana(Request $request): View
+    {
         $fechaInicio = $request->filled('inicio')
             ? Carbon::parse($request->input('inicio'))->startOfWeek()
             : Carbon::now()->startOfWeek();
@@ -43,12 +54,77 @@ class CitaController extends Controller
         }
 
         return view('citas.index', [
+            'vista' => 'semana',
             'dias' => $dias,
             'inicio' => $fechaInicio,
             'fin' => $fechaFin,
             'semanaAnterior' => $fechaInicio->copy()->subWeek()->format('Y-m-d'),
             'semanaSiguiente'=> $fechaInicio->copy()->addWeek()->format('Y-m-d'),
             'hoyInicio' => Carbon::now()->startOfWeek()->format('Y-m-d'),
+        ]);
+    }
+
+    protected function vistaDia(Request $request): View
+    {
+        $fecha = $request->filled('fecha')
+            ? Carbon::parse($request->input('fecha'))
+            : Carbon::today();
+
+        $citas = Cita::with(['cliente', 'profesional', 'cabina', 'servicios'])
+            ->whereDate('fecha', $fecha->format('Y-m-d'))
+            ->orderBy('hora_inicio')
+            ->get();
+
+        return view('citas.index', [
+            'vista' => 'dia',
+            'fechaDia' => $fecha,
+            'citasDia' => $citas,
+            'diaAnterior' => $fecha->copy()->subDay()->format('Y-m-d'),
+            'diaSiguiente' => $fecha->copy()->addDay()->format('Y-m-d'),
+            'hoyFecha' => Carbon::today()->format('Y-m-d'),
+        ]);
+    }
+
+    protected function vistaMes(Request $request): View
+    {
+        $mesRef = $request->filled('mes')
+            ? Carbon::parse($request->input('mes') . '-01')
+            : Carbon::now();
+        $mesRef = $mesRef->startOfMonth();
+
+        $inicioGrid = $mesRef->copy()->startOfWeek();
+        $finGrid = $mesRef->copy()->endOfMonth()->endOfWeek();
+
+        $citas = Cita::with(['cliente', 'profesional'])
+            ->whereBetween('fecha', [$inicioGrid->format('Y-m-d'), $finGrid->format('Y-m-d')])
+            ->orderBy('hora_inicio')
+            ->get()
+            ->groupBy(fn ($c) => $c->fecha->format('Y-m-d'));
+
+        $semanas = collect();
+        $cursor = $inicioGrid->copy();
+        while ($cursor->lte($finGrid)) {
+            $semana = collect();
+            for ($i = 0; $i < 7; $i++) {
+                $semana->push([
+                    'fecha'         => $cursor->format('Y-m-d'),
+                    'numero'        => $cursor->format('j'),
+                    'es_hoy'        => $cursor->isToday(),
+                    'es_mes_actual' => $cursor->month === $mesRef->month,
+                    'citas'         => $citas[$cursor->format('Y-m-d')] ?? collect(),
+                ]);
+                $cursor->addDay();
+            }
+            $semanas->push($semana);
+        }
+
+        return view('citas.index', [
+            'vista' => 'mes',
+            'mesRef' => $mesRef,
+            'semanas' => $semanas,
+            'mesAnterior' => $mesRef->copy()->subMonth()->format('Y-m'),
+            'mesSiguiente' => $mesRef->copy()->addMonth()->format('Y-m'),
+            'hoyMes' => Carbon::now()->format('Y-m'),
         ]);
     }
 
