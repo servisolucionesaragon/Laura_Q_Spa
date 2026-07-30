@@ -81,6 +81,163 @@ sistema de punto de venta.
 - Detalle técnico completo (BD, `.env`, nginx, SSL, credenciales) vive en
   `Aplicaciones web/.claude/server-context.md` del NAS del portal SSA, sección
   "App dedicada: Laura Q Spa" — no duplicado aquí.
+- **Flujo de despliegue establecido**: editar en la copia local de este repo →
+  `git commit` + `push` a `origin/main` → en el VPS, `/var/www/lauraqspa` es un
+  clon git real (`git pull`, nunca SCP directo) → `php artisan view:clear`
+  (+ `migrate --force` si hay migración nueva, con backup previo de la(s)
+  tabla(s) afectada(s) vía `mysqldump`). Verificación: `php -l` en los `.php`
+  tocados, y **`php artisan view:cache` solo detecta errores de sintaxis
+  Blade, NO errores de ejecución** (ver bug real más abajo) — para estar
+  seguro de verdad, renderizar la vista contra datos reales con un script
+  standalone (`view('...')->render()`) antes de dar por bueno un cambio de
+  Blade no trivial.
+
+### Ronda de features (2026-07-30) — resumen técnico completo
+
+Todo lo siguiente se agregó sobre el esqueleto original de TPV Estética y SPA
+(Laravel 11 real, pese a que el resto de la documentación del portal lo lista
+como "Laravel 10" — `composer.json` pide `^10.10` pero `composer.lock` resolvió
+`laravel/framework v11.51.0`, y el skeleton usa `bootstrap/app.php` +
+`bootstrap/providers.php` al estilo Laravel 11, no `config/app.php` con array
+de providers).
+
+**PWA instalable**: `PwaController` (`manifest()`/`icon()`) sirve
+`/manifest.webmanifest` y `/pwa-icon/{192|512}.png`, públicas (fuera del
+grupo `auth`). El ícono se genera con **GD nativo** (sin librería externa)
+redimensionando el logo subido en Configuración, o un cuadrado sólido del
+`color_primario` si no hay logo. `layouts/app.blade.php` y
+`auth/login.blade.php` comparten el mismo `<head>` con
+`link rel="manifest"`/`apple-touch-icon`/`meta theme-color`.
+
+**Colores configurables — dos rondas**:
+1ª ronda: `color_accent`, `color_sidebar_fondo`, `color_sidebar_texto` +
+helper `ConfiguracionEmpresa::oscurecer($hex, $porcentaje)` (deriva tonos
+oscuros por RGB simple, no HSL) para no pedir cada variante a mano. De paso
+se corrigió que **el login nunca aplicaba ningún color configurado** — solo
+`layouts/app.blade.php` tenía el bloque `<style>:root{...}</style>`, login
+no. Ambas vistas ahora comparten `layouts/partials/theme-colors.blade.php`.
+2ª ronda: el fondo del menú lateral y el ítem activo dejaron de usar
+degradado (`linear-gradient`) y pasan a color sólido; `color_menu_activo` se
+desacopló de `color_secundario` (antes el ítem activo tomaba ese color, que
+también se usa en topbar/títulos) — mismo criterio ya aplicado en CRM
+Celulares. Nuevo `color_fondo` reemplaza el `#cdb1be` fijo del fondo general.
+CSS variables actuales: `--spa-primary(-dark/-darker)`, `--spa-secondary(-dark)`,
+`--spa-accent(-dark)`, `--spa-sidebar-bg`, `--spa-sidebar-text`,
+`--spa-menu-activo`, `--spa-bg`.
+
+**Métodos de pago configurables**: `ventas.metodo_pago` y `venta_pagos.metodo`
+eran `ENUM` fijo de fábrica → tabla `metodos_pago` (`nombre`, `activo`) con
+CRUD (`MetodoPagoController`, patrón modal+tabla igual que Categorías).
+Conversión `ENUM`→`VARCHAR(50)` vía **SQL crudo** (`DB::statement`), porque
+`Blueprint::change()` requiere `doctrine/dbal`, no instalado en esta app.
+Catálogo sembrado con los 5 valores originales (`efectivo`, `tarjeta`,
+`transferencia`, `mixto`, `otro`) para no romper las ventas ya existentes.
+
+**Bug real — `Route::resource` kebab-case rompe editar/eliminar en silencio**:
+detectado al agregar Métodos de pago (y confirmado que ya afectaba,
+sin que nadie lo hubiera notado, a Categorías de productos/tratamientos y
+Plantillas de bonos). `Route::resource('metodos-pago', ...)` genera el
+wildcard `{metodos_pago}` (snake_case), pero el controlador tiene
+`update(Request $request, MetodoPago $metodoPago)` (camelCase). Al no
+coincidir el nombre exacto, `ImplicitRouteBinding` no lanza error — deja el
+parámetro sin resolver, y el resolver de dependencias del controlador cae a
+un *fallback* que instancia un modelo **nuevo y vacío** (`id = null`).
+`->update()`/`->delete()` sobre ese modelo ejecutan un
+`UPDATE`/`DELETE ... WHERE id IS NULL` que no afecta ninguna fila: la
+petición "funciona" (redirect 302, sin excepción) pero no cambia nada en la
+BD. Confirmado con un script que inspecciona
+`ImplicitRouteBinding::resolveForRoute()` directamente. **Fix**:
+`->parameters(['metodos-pago' => 'metodoPago'])` (y análogo para
+`categorias-productos`, `categorias-tratamientos`, `bonos-plantillas`) para
+forzar que el wildcard coincida exactamente con el parámetro del
+controlador. Detalle completo también en `.claude/memoria.md` del portal
+(NAS `Aplicaciones web/`).
+
+**Caja diaria**: tablas `cajas` (apertura/cierre, `monto_apertura`,
+`monto_cierre`, `monto_esperado`, `diferencia`, `estado`) y
+`movimientos_caja` (`tipo` ingreso/egreso, `concepto`, `monto`) +
+`caja_id` nullable en `ventas`. `Caja::abiertaActual()` /
+`montoEsperadoCalculado()` (apertura + ventas en efectivo + ingresos −
+egresos). `VentaController::tpv()`/`store()` **exigen una caja abierta**
+(redirige a `caja.index` si no hay ninguna) — a pedido explícito del
+usuario. Cierre con alerta en vivo (JS) si el conteo real no cuadra con lo
+esperado + `confirm()` mencionando el faltante/sobrante antes de cerrar.
+Reporte de cierre (`caja/reporte.blade.php`) imprimible/PDF (mismo patrón
+`window.print()` que el tique de venta, sin librería PDF) y enviable por
+WhatsApp vía link público firmado (`GET /r/caja/{caja}`, middleware
+`signed`, reutiliza `layouts.publico`).
+
+**Ventas — logo, WhatsApp, edición/anulación admin-only**: logo de la
+empresa en el tique. Recibo público firmado (`GET /r/venta/{venta}`) +
+botón "Enviar por WhatsApp" (mismo patrón `$layout`/`$publico` que CRM
+Celulares). `VentaController::edit()`/`update()` (nuevo) permite modificar
+cliente/ítems/descuento/método/notas de una venta ya registrada, revirtiendo
+el stock de los ítems viejos antes de aplicar los nuevos
+(`descontarStock()`/`revertirStock()`, reutilizados también por `anular()`,
+que ahora sí repone stock — antes lo dejaba descontado permanentemente).
+Ambas acciones + `anular()` movidas al grupo de rutas `role:admin`, más
+`abort_unless(esAdmin())` a nivel de controlador (no solo el botón oculto en
+la vista).
+
+**Bug real — `@php` con closure dentro de `@push('scripts')` corrompe la
+compilación de Blade**: al mover un array calculado (`$carritoInicial`, para
+prellenar el carrito JS del formulario de edición) a un bloque
+`@php ... @endphp` con un closure anidado (`->map(function ($it) { return
+[...]; })`) dentro de `@push('scripts')`, Blade compiló mal **todo el
+bloque**: no solo el `@php` fallaba, sino que los `@json(...)` que estaban
+**antes** en el mismo `<script>` quedaban sin compilar (aparecían como texto
+literal `@json(...)` en el PHP generado) → `Undefined variable
+$carritoInicial` en tiempo de ejecución. `php artisan view:cache` **no lo
+detectó** (solo compila, no ejecuta con datos reales) — el bug solo se
+reprodujo renderizando la vista de verdad contra una venta real
+(`view('ventas.edit', [...])->render()` en un script standalone). **Fix
+real**: mover el cálculo del array a `VentaController::edit()` (PHP puro, no
+Blade) y pasarlo ya listo a la vista — `@json($carritoInicial)` vuelve a ser
+una referencia simple a una variable, sin closures ni corchetes anidados
+dentro de un `@push`. **Lección para cualquier vista de esta app**: evitar
+`@php` con closures/arrays multilínea dentro de bloques `@push`/`@stack`;
+calcular esos datos siempre en el controlador.
+
+**Búsqueda de clientes en vivo**: `GET /clientes/buscar` (JSON, mínimo 2
+caracteres, busca por `nombre`/`apellido`/`telefono`/`documento`/`email`) +
+partial reutilizable `clientes/partials/buscador.blade.php` (input +
+resultados con debounce 300ms) usado en el TPV y en el formulario de citas,
+reemplazando el `<select>` que cargaba todos los clientes de una vez.
+
+**WhatsApp — trait compartido y usos**: `App\Traits\TieneWhatsapp`
+(`numeroWhatsapp()`/`whatsappUrl()`, indicativo Colombia `+57` por defecto)
+aplicado a `Cliente` y a `User` (para poder avisar a los profesionales).
+Usos: recibo de venta, recordatorio de cita, cambio de estado de cita
+(mensaje distinto por estado vía `Cita::mensajeCambioEstado()`), aviso de
+asignación de cita al profesional (`Cita::mensajeAsignacionProfesional()`),
+felicitación de cumpleaños de clientes
+(`Cliente::cumpleAnioEsteMes()`/`scopeConCumpleanioEsteMes()` — nombres
+elegidos a propósito para no colisionar case-insensitive en PHP, mismo
+patrón que CRM Celulares), reporte de cierre de caja.
+
+**Notificaciones sin cron**: el VPS del portal **no tiene cron
+configurado** (`crontab: command not found`), así que no hay push
+automático real (ej. WhatsApp 15 min antes de una cita). Lo implementado es
+un modelo "pull": campana en el topbar (`View::composer('layouts.partials.topbar')`
+en `AppServiceProvider`, calcula `Cita::proximasParaUsuario()` en cada
+request) que muestra las citas de hoy del profesional logueado (o todas si
+es otro rol), resaltando las que empiezan en ≤60 min. Si en el futuro se
+quiere push real automático, hace falta instalar/configurar cron en el VPS
+compartido del portal (afecta las demás apps) + decidir un proveedor de
+WhatsApp Business API (hoy todos los envíos de esta app son enlaces `wa.me`
+de clic manual, no hay integración de envío automático).
+
+**Agenda mes/semana/día**: `CitaController::index()` despacha según
+`?vista=mes|semana|dia` (semana por defecto, compatible con los enlaces
+viejos sin el parámetro). Vista mes: grilla de semanas completas (incluye
+días del mes anterior/siguiente para rellenar), hasta 3 citas por día +
+"+N más". Vista día: listado detallado de un solo día.
+
+**Rename Tratamientos → Servicios**: solo texto visible (sidebar, títulos,
+labels, mensajes flash) — rutas, nombres de tabla/modelo/controlador
+(`Tratamiento`, `tratamientos`) y nombres de variable **se dejaron
+intactos** a propósito, para no arriesgar una migración de datos/rutas que
+no aportaba nada funcional.
 
 ## Archivos clave
 

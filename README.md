@@ -26,9 +26,61 @@ citas, tratamientos, productos, clientes, bonos y ventas.
   generando el ícono a partir del logo/color de marca configurados en
   Configuración — "Agregar a pantalla de inicio" desde el navegador en
   Android/iOS usa el branding real, sin archivos de ícono fijos en el repo.
-- Detalle técnico completo (BD, `.env`, nginx, credenciales) en
+- Detalle técnico completo (BD, `.env`, nginx, credenciales, decisiones de
+  diseño y bugs corregidos) en `.claude/CONTEXT.md` de este mismo repo y en
   `Aplicaciones web/.claude/server-context.md` del NAS del portal SSA, sección
   "App dedicada: Laura Q Spa".
+
+### Módulos y funcionalidades
+
+**Operativa**
+- **Dashboard**: KPIs del día/mes, gráficos de ventas (14 días), citas por
+  estado, top servicios, ventas por método de pago, próximas citas, top
+  profesionales.
+- **Agenda / Citas**: vistas **Mes / Semana / Día** intercambiables (selector
+  arriba del calendario), lista cronológica filtrable por estado, formulario
+  con búsqueda de cliente en vivo.
+- **Punto de Venta (TPV)**: catálogo de Servicios/Productos con búsqueda,
+  carrito con cantidades, cliente opcional (buscador en vivo por nombre o
+  documento), método de pago tomado del catálogo configurable, descuento,
+  cálculo de totales en tiempo real. **Exige una caja abierta** para operar
+  (redirige a Caja si no hay ninguna).
+- **Caja diaria**: apertura con monto inicial, registro de gastos/ingresos
+  durante el día, cierre con conteo real de efectivo (alerta en vivo si hay
+  faltante/sobrante respecto a lo esperado), historial completo (abiertas y
+  cerradas), **reporte de cierre** imprimible/guardable en PDF y enviable por
+  WhatsApp (link público firmado).
+- **Ventas**: historial con filtro por fecha, tique con logo de la empresa,
+  envío del recibo por WhatsApp al cliente (link público firmado, sin
+  necesitar cuenta), **editar/anular solo administrador** (revierte y vuelve
+  a aplicar el stock de productos automáticamente).
+
+**Clientes y comunicación (WhatsApp)**
+- Búsqueda en vivo de clientes por nombre o documento (citas y TPV), sin
+  cargar la lista completa.
+- Alertas de cumpleaños del mes (banner + filtro en Clientes) con botón de
+  felicitación por WhatsApp.
+- Citas: botón de recordatorio y de aviso de cambio de estado por WhatsApp al
+  cliente; botón para avisar al profesional asignado.
+- **Campana de notificaciones** (topbar, todas las páginas): citas del día
+  pendientes/confirmadas — propias si el usuario es profesional, todas si es
+  otro rol — resaltando las que empiezan en menos de 60 minutos.
+
+**Catálogos**
+- **Servicios** (antes "Tratamientos", renombrado en toda la UI) con
+  categorías propias.
+- **Métodos de pago** configurables (catálogo administrable: agregar,
+  renombrar, desactivar) — ya no son una lista fija en el código.
+- Productos, Proveedores, Bonos/Plantillas de bono, Empleados, Cabinas.
+
+**Personalización (Configuración → Marca & Logo)**
+- Logo, colores: primario, secundario, acento, fondo del menú lateral, texto
+  del menú lateral, **ítem activo del menú** (color sólido propio) y
+  **fondo general** de la app — los tonos oscuros para hovers/degradados se
+  derivan automáticamente del color base elegido.
+- Moneda (símbolo, código, formato) e impuesto configurables, aplicados de
+  forma consistente en toda la app (TPV, recibos, reportes).
+- Pie de página institucional en login y layout autenticado.
 
 ## ✅ Funcionalidades
 

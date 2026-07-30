@@ -5,3 +5,4 @@
 - [Feedback: sin prompts de permisos](feedback_no_permission_prompts.md) — Edit/Write/Bash/PowerShell allowlisted en settings.local.json de este proyecto
 - [Proyecto: Laura Q Spa](project_laura_q_spa.md) — estado del sitio, apunta a `.claude/CONTEXT.md` del repo para detalles técnicos
 - [Referencias: repos y dominios](reference_lqspa_repos_domains.md) — GitHub, n8n, dominio, maps, whatsapp
+- [App de gestión en app/](project_app_gestion_laura_q_spa.md) — TPV/caja/citas en app.lauraqspa.com, módulos y 2 bugs reales corregidos (route binding kebab-case, @php en @push rompe Blade)
