@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Color secundario</label>
-                                    <div class="form-text mb-1">Títulos, topbar y el ítem activo del menú lateral.</div>
+                                    <div class="form-text mb-1">Títulos y topbar.</div>
                                     <div class="d-flex gap-2 align-items-center">
                                         <input type="color" name="color_secundario" class="form-control form-control-color" style="width:60px"
                                                value="{{ old('color_secundario', $configuracion->color_secundario) }}">
@@ -168,6 +168,26 @@
                                                value="{{ old('color_sidebar_texto', $configuracion->color_sidebar_texto ?? '#f0e4ea') }}">
                                         <input type="text" class="form-control" readonly
                                                value="{{ old('color_sidebar_texto', $configuracion->color_sidebar_texto ?? '#f0e4ea') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Ítem activo del menú</label>
+                                    <div class="form-text mb-1">Color sólido del módulo seleccionado en el menú lateral.</div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="color" name="color_menu_activo" class="form-control form-control-color" style="width:60px"
+                                               value="{{ old('color_menu_activo', $configuracion->color_menu_activo ?? '#4a3050') }}">
+                                        <input type="text" class="form-control" readonly
+                                               value="{{ old('color_menu_activo', $configuracion->color_menu_activo ?? '#4a3050') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Fondo general (lado derecho)</label>
+                                    <div class="form-text mb-1">Color detrás de las tarjetas, en toda la app.</div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="color" name="color_fondo" class="form-control form-control-color" style="width:60px"
+                                               value="{{ old('color_fondo', $configuracion->color_fondo ?? '#cdb1be') }}">
+                                        <input type="text" class="form-control" readonly
+                                               value="{{ old('color_fondo', $configuracion->color_fondo ?? '#cdb1be') }}">
                                     </div>
                                 </div>
                             </div>

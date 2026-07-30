@@ -23,7 +23,7 @@
     --spa-sidebar-bg: #2e1c33;       /* sidebar muy oscuro */
     --spa-sidebar-text: #f0e4ea;
     --spa-sidebar-muted: #b8a3b8;
-    --spa-sidebar-active: #4a3050;
+    --spa-menu-activo: #4a3050;      /* ítem activo del menú, color sólido */
     --spa-sidebar-border: #3d2540;
 
     --spa-text: #1f1024;             /* texto principal casi negro */
@@ -138,7 +138,7 @@ a:hover { color: var(--spa-secondary); }
 /* === Sidebar muy oscuro === */
 .spa-sidebar {
     width: var(--spa-sidebar-w);
-    background: linear-gradient(180deg, #1a0d1f 0%, var(--spa-sidebar-bg) 50%, var(--spa-secondary) 100%);
+    background: var(--spa-sidebar-bg);
     color: var(--spa-sidebar-text);
     border-right: 1px solid var(--spa-sidebar-border);
     padding: 1.25rem 0;
@@ -203,7 +203,7 @@ a:hover { color: var(--spa-secondary); }
     border-left-color: var(--spa-primary);
 }
 .spa-sidebar .nav-link.active {
-    background: linear-gradient(90deg, var(--spa-primary-dark) 0%, var(--spa-sidebar-active) 100%);
+    background: var(--spa-menu-activo);
     color: #fff;
     font-weight: 600;
     border-left-color: var(--spa-accent);

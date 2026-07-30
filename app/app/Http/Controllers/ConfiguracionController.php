@@ -40,6 +40,8 @@ class ConfiguracionController extends Controller
             'color_accent'        => ['required', 'string', 'max:10'],
             'color_sidebar_fondo' => ['required', 'string', 'max:10'],
             'color_sidebar_texto' => ['required', 'string', 'max:10'],
+            'color_menu_activo'   => ['required', 'string', 'max:10'],
+            'color_fondo'         => ['required', 'string', 'max:10'],
             'hora_apertura'       => ['required', 'date_format:H:i'],
             'hora_cierre'         => ['required', 'date_format:H:i'],
             'dias_laborales'      => ['nullable', 'array'],
