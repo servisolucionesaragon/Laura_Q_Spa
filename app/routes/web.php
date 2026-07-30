@@ -59,21 +59,25 @@ Route::middleware('auth')->group(function () {
     Route::get('ventas/tpv', [VentaController::class, 'tpv'])->name('ventas.tpv');
     Route::post('ventas/{venta}/anular', [VentaController::class, 'anular'])->name('ventas.anular');
     Route::resource('ventas', VentaController::class)->only(['index', 'store', 'show']);
-    Route::resource('metodos-pago', MetodoPagoController::class)->except(['show', 'create', 'edit']);
+    Route::resource('metodos-pago', MetodoPagoController::class)->except(['show', 'create', 'edit'])
+        ->parameters(['metodos-pago' => 'metodoPago']);
 
     // Bonos
-    Route::resource('bonos-plantillas', BonoPlantillaController::class)->except(['show']);
+    Route::resource('bonos-plantillas', BonoPlantillaController::class)->except(['show'])
+        ->parameters(['bonos-plantillas' => 'bonoPlantilla']);
     Route::post('bonos/{bono}/consumir', [BonoController::class, 'consumir'])->name('bonos.consumir');
     Route::resource('bonos', BonoController::class)->except(['edit', 'update']);
 
     /* ======= Catálogos ======= */
 
     // Tratamientos
-    Route::resource('categorias-tratamientos', CategoriaTratamientoController::class)->except(['show', 'create', 'edit']);
+    Route::resource('categorias-tratamientos', CategoriaTratamientoController::class)->except(['show', 'create', 'edit'])
+        ->parameters(['categorias-tratamientos' => 'categoriaTratamiento']);
     Route::resource('tratamientos', TratamientoController::class);
 
     // Productos
-    Route::resource('categorias-productos', CategoriaProductoController::class)->except(['show', 'create', 'edit']);
+    Route::resource('categorias-productos', CategoriaProductoController::class)->except(['show', 'create', 'edit'])
+        ->parameters(['categorias-productos' => 'categoriaProducto']);
     Route::get('productos/{producto}/movimientos', [ProductoController::class, 'movimientos'])->name('productos.movimientos');
     Route::post('productos/{producto}/stock', [ProductoController::class, 'moverStock'])->name('productos.stock');
     Route::resource('productos', ProductoController::class);
