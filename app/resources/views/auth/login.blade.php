@@ -77,14 +77,6 @@
                 <i class="bi bi-box-arrow-in-right"></i> Entrar
             </button>
         </form>
-
-        <hr style="margin:1.5rem 0;border-color:var(--spa-border)">
-
-        <div style="font-size:.78rem;color:var(--spa-muted);text-align:center;line-height:1.6">
-            <strong style="color:var(--spa-secondary)">Credenciales de prueba:</strong><br>
-            admin@estetica.local / admin123<br>
-            recepcion@estetica.local / recepcion123
-        </div>
     </div>
 </div>
 <script src="{{ asset('js/app.js') }}?v=3"></script>
