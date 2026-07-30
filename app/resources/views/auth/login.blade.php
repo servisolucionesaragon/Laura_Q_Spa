@@ -90,11 +90,12 @@
             </button>
         </form>
     </div>
+
+    <div class="text-center" style="position:absolute;left:0;right:0;bottom:14px;z-index:1;font-size:.8rem;color:#000;padding:0 1rem">
+        © {{ date('Y') }} Todos los derechos reservados. Desarrollado por:
+        <a href="https://ssaragon.com" target="_blank" rel="noopener" style="color:#E85D04;font-weight:700;text-decoration:none">Servisoluciones Aragón</a>
+    </div>
 </div>
-<footer class="text-center py-3" style="font-size:.82rem;color:rgba(255,255,255,.85);position:relative;z-index:1">
-    © {{ date('Y') }} Todos los derechos reservados. Desarrollado por:
-    <a href="https://ssaragon.com" target="_blank" rel="noopener" style="color:#ffd7e2">Servisoluciones Aragón</a>
-</footer>
 <script src="{{ asset('js/app.js') }}?v=3"></script>
 </body>
 </html>

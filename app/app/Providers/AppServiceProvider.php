@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Cita;
 use App\Models\ConfiguracionEmpresa;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +33,19 @@ class AppServiceProvider extends ServiceProvider
                 $config = null;
             }
             $view->with('configEmpresa', $config);
+        });
+
+        // Campana de citas del día (propias si es profesional, todas si no) para el topbar
+        View::composer('layouts.partials.topbar', function ($view) {
+            $citasProximas = collect();
+            try {
+                if (Auth::check() && Schema::hasTable('citas')) {
+                    $citasProximas = Cita::proximasParaUsuario(Auth::user());
+                }
+            } catch (\Throwable $e) {
+                $citasProximas = collect();
+            }
+            $view->with('citasProximas', $citasProximas);
         });
     }
 }

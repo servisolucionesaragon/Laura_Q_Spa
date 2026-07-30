@@ -15,6 +15,10 @@
                 <a href="{{ $cita->cliente->whatsappUrl($cita->mensajeRecordatorio()) }}" target="_blank"
                    class="btn" style="background:#25D366;color:#fff"><i class="bi bi-whatsapp"></i> Recordatorio</a>
             @endif
+            @if($cita->profesional?->numeroWhatsapp())
+                <a href="{{ $cita->profesional->whatsappUrl($cita->mensajeAsignacionProfesional()) }}" target="_blank"
+                   class="btn" style="background:#128C7E;color:#fff"><i class="bi bi-whatsapp"></i> Avisar al profesional</a>
+            @endif
             <a href="{{ route('citas.edit', $cita) }}" class="btn btn-spa-primary"><i class="bi bi-pencil"></i> Editar</a>
             <a href="{{ route('citas.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caja;
 use App\Models\MetodoPago;
 use App\Models\Producto;
 use App\Models\Tratamiento;
@@ -35,8 +36,13 @@ class VentaController extends Controller
         return view('ventas.index', compact('ventas', 'desde', 'hasta', 'totales'));
     }
 
-    public function tpv(): View
+    public function tpv(): View|RedirectResponse
     {
+        if (! Caja::abiertaActual()) {
+            return redirect()->route('caja.index')
+                ->with('error', 'Debes abrir la caja antes de registrar ventas.');
+        }
+
         return view('ventas.tpv', [
             'tratamientos' => Tratamiento::activos()->orderBy('nombre')->get(),
             'productos'    => Producto::activos()->paraVenta()->orderBy('nombre')->get(),
@@ -47,6 +53,12 @@ class VentaController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $cajaAbierta = Caja::abiertaActual();
+        if (! $cajaAbierta) {
+            return redirect()->route('caja.index')
+                ->with('error', 'Debes abrir la caja antes de registrar ventas.');
+        }
+
         $datos = $request->validate([
             'cliente_id'           => 'nullable|exists:clientes,id',
             'metodo_pago'          => 'required|string|exists:metodos_pago,nombre',
@@ -64,7 +76,7 @@ class VentaController extends Controller
         $impIncluido = (bool) ($GLOBALS['configEmpresa']->impuesto_incluido ?? true);
         $impPct = (float) (optional(\App\Models\ConfiguracionEmpresa::first())->impuesto_porcentaje ?? 12);
 
-        $venta = DB::transaction(function () use ($datos, $impIncluido, $impPct) {
+        $venta = DB::transaction(function () use ($datos, $impIncluido, $impPct, $cajaAbierta) {
             $subtotal = 0;
             foreach ($datos['items'] as $it) {
                 $subtotal += (float) $it['cantidad'] * (float) $it['precio_unitario'];
@@ -78,7 +90,7 @@ class VentaController extends Controller
                 'numero'      => Venta::generarNumero(),
                 'cliente_id'  => $datos['cliente_id'] ?? null,
                 'user_id'     => auth()->id(),
-                'caja_id'     => \App\Models\Caja::abiertaActual()?->id,
+                'caja_id'     => $cajaAbierta->id,
                 'fecha'       => now(),
                 'subtotal'    => $subtotal,
                 'descuento'   => $descuento,

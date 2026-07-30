@@ -78,6 +78,33 @@ class Cita extends Model
         $this->save();
     }
 
+    /**
+     * Citas de hoy para la campana del topbar: solo las propias si es
+     * profesional, todas (para dar visibilidad operativa) si es otro rol.
+     */
+    public static function proximasParaUsuario(?User $user, int $limite = 6)
+    {
+        $query = static::with(['cliente', 'profesional'])
+            ->whereDate('fecha', now()->toDateString())
+            ->whereIn('estado', ['pendiente', 'confirmada'])
+            ->orderBy('hora_inicio');
+
+        if ($user && $user->rol === 'profesional') {
+            $query->where('profesional_id', $user->id);
+        }
+
+        return $query->limit($limite)->get();
+    }
+
+    /**
+     * Minutos que faltan para que empiece la cita (negativo si ya pasó).
+     */
+    public function minutosParaEmpezar(): int
+    {
+        $inicio = \Carbon\Carbon::parse($this->fecha->format('Y-m-d') . ' ' . $this->hora_inicio);
+        return (int) round(now()->diffInMinutes($inicio, false));
+    }
+
     protected function nombreEmpresa(): string
     {
         return ConfiguracionEmpresa::first()?->nombre_empresa ?? 'nuestro spa';
@@ -93,6 +120,14 @@ class Cita extends Model
     public function mensajeRecordatorio(): string
     {
         return "Hola {$this->cliente?->nombre}, te recordamos tu cita en *{$this->nombreEmpresa()}* el {$this->fechaHoraTexto()}. ¡Te esperamos!";
+    }
+
+    public function mensajeAsignacionProfesional(): string
+    {
+        return "Hola {$this->profesional?->name}, se te asignó una nueva cita en *{$this->nombreEmpresa()}*: "
+            . "{$this->cliente?->nombre_completo} el {$this->fechaHoraTexto()}"
+            . ($this->servicios->isNotEmpty() ? ' (' . $this->servicios->pluck('descripcion')->join(', ') . ')' : '')
+            . '.';
     }
 
     public function mensajeCambioEstado(string $estado): string
