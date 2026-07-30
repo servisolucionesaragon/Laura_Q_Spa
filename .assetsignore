@@ -1,0 +1,12 @@
+# Excluye del despliegue de Cloudflare Workers Static Assets (assets.directory
+# en wrangler.jsonc) todo lo que no debe publicarse como sitio estático.
+#
+# app/ es la app Laravel dedicada (TPV Estética y SPA para Laura Q Spa), que se
+# despliega por separado en el VPS Oracle del portal SSA (app.lauraqspa.com) —
+# nunca debe subirse como asset estático de Cloudflare, expondría código fuente,
+# vistas y configuración de la app.
+/app/
+
+# Notas internas de colaboración (contexto/memoria de Claude Code), no son
+# contenido del sitio público.
+/.claude/
