@@ -435,11 +435,14 @@
                             <label class="form-label" style="color:var(--spa-danger)">
                                 Para confirmar, escribe <strong id="palabra-confirm">RESETEAR</strong>
                             </label>
-                            <input type="text" name="confirmacion" class="form-control confirm-input" required
+                            <input type="text" name="confirmacion" id="confirmacion-input" class="form-control confirm-input" required
                                    placeholder="RESETEAR" autocomplete="off">
+                            <div id="confirmacion-error" class="text-danger mt-1" style="font-size:.85rem;display:none">
+                                <i class="bi bi-exclamation-circle"></i> <span></span>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn" style="background:var(--spa-danger);color:#fff;font-weight:600">
+                        <button type="button" id="btn-abrir-reset" class="btn" style="background:var(--spa-danger);color:#fff;font-weight:600">
                             <i class="bi bi-exclamation-octagon"></i> Ejecutar reset
                         </button>
                         <small class="text-spa-muted ms-2">Esta acción no se puede deshacer.</small>
@@ -472,6 +475,30 @@
                             <i class="bi bi-trash"></i> Eliminar definitivamente
                         </button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal confirmación de reset (en vez de confirm()/alert() nativos del navegador,
+         que quedan bloqueados en silencio si el usuario marcó alguna vez "Evitar que
+         este sitio cree más cuadros de diálogo" en Chrome) --}}
+    <div class="modal fade" id="modalConfirmarReset" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header danger">
+                    <h5 class="modal-title" id="modalResetTitulo"><i class="bi bi-exclamation-octagon-fill"></i> Confirmar reset</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalResetTexto" style="font-weight:500"></p>
+                    <p class="text-spa-muted" style="font-size:.85rem">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-spa-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarResetFinal" class="btn" style="background:var(--spa-danger);color:#fff">
+                        <i class="bi bi-exclamation-octagon"></i> Sí, ejecutar reset
+                    </button>
                 </div>
             </div>
         </div>
@@ -510,20 +537,38 @@
         window.scrollTo({ top: document.querySelector('.spa-card').offsetTop, behavior: 'smooth' });
     }
 
-    // Confirmación adicional al enviar el form de reset
-    document.getElementById('form-reset')?.addEventListener('submit', function (e) {
+    // Confirmación del reset vía modal propio (no confirm()/alert() nativos:
+    // si el usuario marcó alguna vez "Evitar que este sitio cree más cuadros
+    // de diálogo" en Chrome, esas funciones devuelven false/undefined en
+    // silencio para SIEMPRE en esa pestaña, y el formulario nunca se envía
+    // sin mostrar ningún error visible).
+    const formReset = document.getElementById('form-reset');
+    const btnAbrirReset = document.getElementById('btn-abrir-reset');
+    const inputConfirmacion = document.getElementById('confirmacion-input');
+    const errorConfirmacion = document.getElementById('confirmacion-error');
+
+    btnAbrirReset?.addEventListener('click', function () {
         const tipo = document.querySelector('input[name=tipo]:checked').value;
         const palabra = tipo === 'hard' ? 'BORRAR TODO' : 'RESETEAR';
-        const valor = document.querySelector('input[name=confirmacion]').value.trim();
+        const valor = inputConfirmacion.value.trim();
+
         if (valor !== palabra) {
-            e.preventDefault();
-            alert('Para confirmar debes escribir exactamente: ' + palabra);
+            errorConfirmacion.querySelector('span').textContent = 'Para confirmar debes escribir exactamente: ' + palabra;
+            errorConfirmacion.style.display = 'block';
+            inputConfirmacion.focus();
             return;
         }
-        const advertencia = tipo === 'hard'
-            ? '⚠️ ÚLTIMO AVISO: Esto borrará TODOS los datos del sistema. ¿Continuar?'
-            : '⚠️ ¿Confirmas borrar todos los datos operacionales (ventas, citas, bonos)?';
-        if (!confirm(advertencia)) e.preventDefault();
+        errorConfirmacion.style.display = 'none';
+
+        document.getElementById('modalResetTexto').textContent = tipo === 'hard'
+            ? '⚠️ ÚLTIMO AVISO: esto borrará TODOS los datos del sistema (ventas, citas, clientes, productos, empleados y configuración), excepto tu usuario. ¿Continuar?'
+            : '⚠️ ¿Confirmas borrar todos los datos operacionales (ventas, citas, bonos)? Los catálogos, empleados y configuración se mantienen.';
+
+        new bootstrap.Modal(document.getElementById('modalConfirmarReset')).show();
+    });
+
+    document.getElementById('btnConfirmarResetFinal')?.addEventListener('click', function () {
+        formReset.submit();
     });
 </script>
 @endpush
