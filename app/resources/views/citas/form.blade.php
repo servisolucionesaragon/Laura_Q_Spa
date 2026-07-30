@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Tratamiento *</label>
+                <label class="form-label">Servicio *</label>
                 <select name="tratamiento_id" class="form-select" required>
                     <option value="">— Selecciona servicio —</option>
                     @php $serviciosCita = $cita->servicios()->first(); @endphp

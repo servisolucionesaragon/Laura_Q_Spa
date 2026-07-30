@@ -80,6 +80,7 @@ class VentaController extends Controller
                 'numero'      => Venta::generarNumero(),
                 'cliente_id'  => $datos['cliente_id'] ?? null,
                 'user_id'     => auth()->id(),
+                'caja_id'     => \App\Models\Caja::abiertaActual()?->id,
                 'fecha'       => now(),
                 'subtotal'    => $subtotal,
                 'descuento'   => $descuento,

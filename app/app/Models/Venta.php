@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Venta extends Model
 {
     protected $fillable = [
-        'numero', 'cliente_id', 'user_id', 'cita_id', 'fecha',
+        'numero', 'cliente_id', 'user_id', 'cita_id', 'caja_id', 'fecha',
         'subtotal', 'descuento', 'impuesto', 'total',
         'metodo_pago', 'estado', 'notas',
     ];
@@ -33,6 +33,11 @@ class Venta extends Model
     public function cita()
     {
         return $this->belongsTo(Cita::class);
+    }
+
+    public function caja()
+    {
+        return $this->belongsTo(Caja::class);
     }
 
     public function items()

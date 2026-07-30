@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('titulo', 'Tratamientos')
+@section('titulo', 'Servicios')
 
 @section('contenido')
 <div class="spa-card">
     <div class="spa-card-header">
         <div>
-            <h3><i class="bi bi-flower2 text-spa-primary"></i> Tratamientos</h3>
+            <h3><i class="bi bi-flower2 text-spa-primary"></i> Servicios</h3>
             <small class="text-spa-muted">Catálogo de servicios con duración, precio y comisión.</small>
         </div>
         <div class="d-flex gap-2">
@@ -13,7 +13,7 @@
                 <i class="bi bi-tags"></i> Categorías
             </a>
             <a href="{{ route('tratamientos.create') }}" class="btn btn-spa-primary">
-                <i class="bi bi-plus-lg"></i> Nuevo tratamiento
+                <i class="bi bi-plus-lg"></i> Nuevo servicio
             </a>
         </div>
     </div>
@@ -36,7 +36,7 @@
     @if($tratamientos->isEmpty())
         <div class="text-center py-4 text-spa-muted">
             <i class="bi bi-flower3" style="font-size:2.5rem;opacity:.4"></i>
-            <p class="mt-2">No hay tratamientos.</p>
+            <p class="mt-2">No hay servicios.</p>
         </div>
     @else
         @php $sim = $configEmpresa?->simbolo_moneda ?? 'Q'; @endphp
@@ -67,7 +67,7 @@
                         </td>
                         <td class="text-end">
                             <a href="{{ route('tratamientos.edit', $t) }}" class="btn btn-spa-secondary btn-sm"><i class="bi bi-pencil"></i></a>
-                            <form action="{{ route('tratamientos.destroy', $t) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar el tratamiento {{ $t->nombre }}?')">
+                            <form action="{{ route('tratamientos.destroy', $t) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar el servicio {{ $t->nombre }}?')">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-sm" style="background:var(--spa-danger);color:#fff"><i class="bi bi-trash"></i></button>
                             </form>

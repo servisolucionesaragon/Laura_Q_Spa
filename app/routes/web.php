@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BonoController;
 use App\Http\Controllers\BonoPlantillaController;
 use App\Http\Controllers\CabinaController;
+use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CategoriaProductoController;
 use App\Http\Controllers\CategoriaTratamientoController;
 use App\Http\Controllers\CitaController;
@@ -61,6 +62,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('ventas', VentaController::class)->only(['index', 'store', 'show']);
     Route::resource('metodos-pago', MetodoPagoController::class)->except(['show', 'create', 'edit'])
         ->parameters(['metodos-pago' => 'metodoPago']);
+
+    // Caja diaria (apertura/cierre, gastos e ingresos)
+    Route::get('caja', [CajaController::class, 'index'])->name('caja.index');
+    Route::get('caja/abrir', [CajaController::class, 'formAbrir'])->name('caja.abrir');
+    Route::post('caja/abrir', [CajaController::class, 'abrir'])->name('caja.abrir.store');
+    Route::get('caja/{caja}', [CajaController::class, 'show'])->name('caja.show');
+    Route::post('caja/{caja}/movimientos', [CajaController::class, 'agregarMovimiento'])->name('caja.movimientos.store');
+    Route::delete('caja/{caja}/movimientos/{movimiento}', [CajaController::class, 'eliminarMovimiento'])->name('caja.movimientos.destroy');
+    Route::post('caja/{caja}/cerrar', [CajaController::class, 'cerrar'])->name('caja.cerrar');
 
     // Bonos
     Route::resource('bonos-plantillas', BonoPlantillaController::class)->except(['show'])

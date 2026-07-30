@@ -19,9 +19,9 @@
             </div>
             <div class="col-12"><label class="form-label">Descripción</label><textarea name="descripcion" class="form-control" rows="2">{{ old('descripcion', $plantilla->descripcion) }}</textarea></div>
             <div class="col-md-6">
-                <label class="form-label">Tratamiento asociado</label>
+                <label class="form-label">Servicio asociado</label>
                 <select name="tratamiento_id" class="form-select">
-                    <option value="">— Sin tratamiento específico —</option>
+                    <option value="">— Sin servicio específico —</option>
                     @foreach($tratamientos as $t)
                         <option value="{{ $t->id }}" {{ (string) old('tratamiento_id', $plantilla->tratamiento_id) === (string) $t->id ? 'selected' : '' }}>{{ $t->nombre }}</option>
                     @endforeach

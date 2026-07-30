@@ -8,7 +8,7 @@
     <div class="spa-card-header">
         <div>
             <h3><i class="bi bi-door-open text-spa-primary"></i> Cabinas</h3>
-            <small class="text-spa-muted">Gestiona los espacios donde se realizan los tratamientos.</small>
+            <small class="text-spa-muted">Gestiona los espacios donde se realizan los servicios.</small>
         </div>
         <button type="button" class="btn btn-spa-primary" data-bs-toggle="modal" data-bs-target="#mCabina"
                 onclick="abrirCrear()">

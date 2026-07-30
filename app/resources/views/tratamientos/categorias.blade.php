@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Categorías de tratamientos')
+@section('titulo', 'Categorías de servicios')
 
 @section('contenido')
 @include('layouts.partials.errors')
@@ -7,11 +7,11 @@
 <div class="spa-card">
     <div class="spa-card-header">
         <div>
-            <h3><i class="bi bi-tags text-spa-primary"></i> Categorías de tratamientos</h3>
-            <small class="text-spa-muted">Agrupa tus tratamientos para una mejor organización.</small>
+            <h3><i class="bi bi-tags text-spa-primary"></i> Categorías de servicios</h3>
+            <small class="text-spa-muted">Agrupa tus servicios para una mejor organización.</small>
         </div>
         <div class="d-flex gap-2">
-            <a href="{{ route('tratamientos.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Tratamientos</a>
+            <a href="{{ route('tratamientos.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Servicios</a>
             <button class="btn btn-spa-primary" data-bs-toggle="modal" data-bs-target="#mCat" onclick="abrirCrear()">
                 <i class="bi bi-plus-lg"></i> Nueva categoría
             </button>
@@ -31,7 +31,7 @@
                         </div>
                         <div>
                             <strong style="color:var(--spa-secondary);font-size:1.05rem">{{ $c->nombre }}</strong>
-                            <div style="font-size:.78rem;color:var(--spa-muted)">{{ $c->tratamientos_count }} tratamientos</div>
+                            <div style="font-size:.78rem;color:var(--spa-muted)">{{ $c->tratamientos_count }} servicios</div>
                         </div>
                     </div>
                     @if($c->descripcion)<p style="font-size:.85rem;color:var(--spa-muted);margin-bottom:.7rem">{{ $c->descripcion }}</p>@endif

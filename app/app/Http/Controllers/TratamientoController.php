@@ -39,7 +39,7 @@ class TratamientoController extends Controller
     public function store(Request $request): RedirectResponse
     {
         Tratamiento::create($this->validar($request));
-        return redirect()->route('tratamientos.index')->with('success', 'Tratamiento creado.');
+        return redirect()->route('tratamientos.index')->with('success', 'Servicio creado.');
     }
 
     public function edit(Tratamiento $tratamiento): View
@@ -51,14 +51,14 @@ class TratamientoController extends Controller
     public function update(Request $request, Tratamiento $tratamiento): RedirectResponse
     {
         $tratamiento->update($this->validar($request));
-        return redirect()->route('tratamientos.index')->with('success', 'Tratamiento actualizado.');
+        return redirect()->route('tratamientos.index')->with('success', 'Servicio actualizado.');
     }
 
     public function destroy(Tratamiento $tratamiento): RedirectResponse
     {
         try {
             $tratamiento->delete();
-            return redirect()->route('tratamientos.index')->with('success', 'Tratamiento eliminado.');
+            return redirect()->route('tratamientos.index')->with('success', 'Servicio eliminado.');
         } catch (\Throwable $e) {
             return redirect()->route('tratamientos.index')->with('error', 'No se puede eliminar: tiene citas asociadas.');
         }

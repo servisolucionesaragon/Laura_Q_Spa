@@ -28,6 +28,9 @@
     <a href="{{ route('ventas.tpv') }}" class="nav-link {{ str_starts_with($rutaActual, 'ventas') ? 'active' : '' }}">
         <i class="bi bi-cash-coin"></i> Punto de Venta
     </a>
+    <a href="{{ route('caja.index') }}" class="nav-link {{ str_starts_with($rutaActual, 'caja') ? 'active' : '' }}">
+        <i class="bi bi-cash-stack"></i> Caja
+    </a>
     <a href="{{ route('clientes.index') }}" class="nav-link {{ str_starts_with($rutaActual, 'clientes') ? 'active' : '' }}">
         <i class="bi bi-people"></i> Clientes
     </a>
@@ -35,7 +38,7 @@
         <i class="bi bi-gift"></i> Bonos
     </a>
     <a href="{{ route('tratamientos.index') }}" class="nav-link {{ str_starts_with($rutaActual, 'tratamientos') || str_starts_with($rutaActual, 'categorias-tratamientos') ? 'active' : '' }}">
-        <i class="bi bi-heart-pulse"></i> Tratamientos
+        <i class="bi bi-heart-pulse"></i> Servicios
     </a>
 
     <div class="nav-section">Inventario</div>

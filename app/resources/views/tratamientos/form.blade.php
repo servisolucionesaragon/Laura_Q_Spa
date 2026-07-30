@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', $tratamiento->exists ? 'Editar tratamiento' : 'Nuevo tratamiento')
+@section('titulo', $tratamiento->exists ? 'Editar servicio' : 'Nuevo servicio')
 
 @section('contenido')
 @include('layouts.partials.errors')
@@ -10,7 +10,7 @@
 
     <div class="spa-card">
         <div class="spa-card-header">
-            <h3><i class="bi bi-flower2 text-spa-primary"></i> {{ $tratamiento->exists ? 'Editar tratamiento' : 'Nuevo tratamiento' }}</h3>
+            <h3><i class="bi bi-flower2 text-spa-primary"></i> {{ $tratamiento->exists ? 'Editar servicio' : 'Nuevo servicio' }}</h3>
             <a href="{{ route('tratamientos.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
         </div>
 

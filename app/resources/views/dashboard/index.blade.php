@@ -211,7 +211,7 @@
                 <div class="chart-header">
                     <div>
                         <h3 class="chart-title"><i class="bi bi-bar-chart-fill text-spa-primary"></i> Top servicios</h3>
-                        <p class="chart-subtitle">Tratamientos más realizados (últimos 30 días)</p>
+                        <p class="chart-subtitle">Servicios más realizados (últimos 30 días)</p>
                     </div>
                 </div>
                 @if($topServicios->isEmpty())
