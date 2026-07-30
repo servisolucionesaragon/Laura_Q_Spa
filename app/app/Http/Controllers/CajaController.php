@@ -15,8 +15,7 @@ class CajaController extends Controller
         $cajaAbierta = Caja::abiertaActual();
 
         $historial = Caja::with('usuario')
-            ->where('estado', 'cerrada')
-            ->orderByDesc('cerrada_en')
+            ->orderByDesc('abierta_en')
             ->paginate(15);
 
         return view('caja.index', compact('cajaAbierta', 'historial'));
@@ -65,6 +64,35 @@ class CajaController extends Controller
         ];
 
         return view('caja.show', compact('caja', 'totales'));
+    }
+
+    public function reporte(Caja $caja): View
+    {
+        return $this->vistaReporte($caja);
+    }
+
+    public function reportePublico(Caja $caja): View
+    {
+        return $this->vistaReporte($caja, publico: true);
+    }
+
+    protected function vistaReporte(Caja $caja, bool $publico = false): View
+    {
+        $caja->load(['movimientos.usuario', 'usuario']);
+
+        $totales = [
+            'ventas_efectivo' => $caja->totalVentasEfectivo(),
+            'ingresos'        => $caja->totalIngresos(),
+            'egresos'         => $caja->totalEgresos(),
+            'esperado'        => $caja->montoEsperadoCalculado(),
+        ];
+
+        return view('caja.reporte', [
+            'caja'    => $caja,
+            'totales' => $totales,
+            'layout'  => $publico ? 'layouts.publico' : 'layouts.app',
+            'publico' => $publico,
+        ]);
     }
 
     public function agregarMovimiento(Request $request, Caja $caja): RedirectResponse

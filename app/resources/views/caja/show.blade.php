@@ -154,12 +154,12 @@
         <div class="spa-card-header">
             <h4 style="margin:0"><i class="bi bi-lock text-spa-primary"></i> Cerrar caja</h4>
         </div>
-        <form method="POST" action="{{ route('caja.cerrar', $caja) }}" onsubmit="return confirm('¿Confirmas el cierre de caja? Esta acción no se puede deshacer.')">
+        <form method="POST" action="{{ route('caja.cerrar', $caja) }}" id="formCerrarCaja">
             @csrf
             <div class="row g-3">
                 <div class="col-md-6">
                     <label class="form-label">Efectivo contado en caja *</label>
-                    <input type="number" step="0.01" min="0" name="monto_cierre" class="form-control" required>
+                    <input type="number" step="0.01" min="0" name="monto_cierre" id="montoCierreInput" class="form-control" required>
                     <div class="form-text">Cuenta el efectivo físico y escribe el total real aquí.</div>
                 </div>
                 <div class="col-md-6">
@@ -167,10 +167,64 @@
                     <textarea name="notas_cierre" class="form-control" rows="1"></textarea>
                 </div>
             </div>
+            <div id="alertaDiferencia" class="alert mt-3" style="display:none"></div>
             <div class="d-flex justify-content-end mt-3">
                 <button class="btn" style="background:var(--spa-danger);color:#fff"><i class="bi bi-lock-fill"></i> Cerrar caja</button>
             </div>
         </form>
+    </div>
+
+    <script>
+    (function () {
+        const esperado = {{ $totales['esperado'] }};
+        const sim = @json($sim);
+        const input = document.getElementById('montoCierreInput');
+        const alerta = document.getElementById('alertaDiferencia');
+        const form = document.getElementById('formCerrarCaja');
+
+        function calcularDiferencia() {
+            const contado = parseFloat(input.value);
+            if (isNaN(contado)) { alerta.style.display = 'none'; return null; }
+            const dif = Math.round((contado - esperado) * 100) / 100;
+            alerta.style.display = 'block';
+            if (dif === 0) {
+                alerta.style.background = '#e0efe3'; alerta.style.color = '#2e6a3a';
+                alerta.innerHTML = '<i class="bi bi-check-circle-fill"></i> Cuadra exacto con lo esperado (' + sim + ' ' + esperado.toFixed(2) + ').';
+            } else if (dif < 0) {
+                alerta.style.background = '#f0d4d4'; alerta.style.color = '#7d2e2e';
+                alerta.innerHTML = '<i class="bi bi-exclamation-triangle-fill"></i> <strong>Falta dinero:</strong> hay ' + sim + ' ' + Math.abs(dif).toFixed(2) + ' menos de lo esperado (' + sim + ' ' + esperado.toFixed(2) + ').';
+            } else {
+                alerta.style.background = '#d9e6ef'; alerta.style.color = '#2c5d80';
+                alerta.innerHTML = '<i class="bi bi-info-circle-fill"></i> Sobran ' + sim + ' ' + dif.toFixed(2) + ' sobre lo esperado (' + sim + ' ' + esperado.toFixed(2) + ').';
+            }
+            return dif;
+        }
+
+        input.addEventListener('input', calcularDiferencia);
+
+        form.addEventListener('submit', function (e) {
+            const dif = calcularDiferencia();
+            let mensaje = '¿Confirmas el cierre de caja? Esta acción no se puede deshacer.';
+            if (dif !== null && dif < 0) {
+                mensaje = '⚠️ Falta ' + sim + ' ' + Math.abs(dif).toFixed(2) + ' en caja respecto a lo esperado.\n\n' + mensaje;
+            } else if (dif !== null && dif > 0) {
+                mensaje = 'Sobran ' + sim + ' ' + dif.toFixed(2) + ' respecto a lo esperado.\n\n' + mensaje;
+            }
+            if (! confirm(mensaje)) e.preventDefault();
+        });
+    })();
+    </script>
+@endif
+
+@if($caja->estado === 'cerrada')
+    <div class="spa-card">
+        <div class="spa-card-header">
+            <h4 style="margin:0"><i class="bi bi-file-earmark-text text-spa-primary"></i> Reporte de cierre</h4>
+        </div>
+        <p class="text-spa-muted mb-2">Ábrelo para imprimirlo, guardarlo en PDF o enviarlo por WhatsApp.</p>
+        <a href="{{ route('caja.reporte', $caja) }}" class="btn btn-spa-primary" target="_blank">
+            <i class="bi bi-file-earmark-arrow-down"></i> Ver reporte de cierre
+        </a>
     </div>
 @endif
 @endsection

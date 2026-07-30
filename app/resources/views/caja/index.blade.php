@@ -36,28 +36,39 @@
 
 <div class="spa-card">
     <div class="spa-card-header">
-        <h4 style="margin:0"><i class="bi bi-clock-history text-spa-primary"></i> Historial de cajas cerradas</h4>
+        <h4 style="margin:0"><i class="bi bi-clock-history text-spa-primary"></i> Historial de cajas</h4>
     </div>
 
     @if($historial->isEmpty())
-        <div class="text-center py-4 text-spa-muted"><p>Aún no hay cajas cerradas.</p></div>
+        <div class="text-center py-4 text-spa-muted"><p>Aún no se ha abierto ninguna caja.</p></div>
     @else
         <div class="table-responsive">
             <table class="spa-table">
-                <thead><tr><th>Fecha</th><th>Responsable</th><th>Apertura</th><th>Cierre</th><th>Esperado</th><th>Diferencia</th><th class="text-end">Acciones</th></tr></thead>
+                <thead><tr><th>Fecha</th><th>Responsable</th><th>Estado</th><th>Apertura</th><th>Cierre</th><th>Esperado</th><th>Diferencia</th><th class="text-end">Acciones</th></tr></thead>
                 <tbody>
                 @foreach($historial as $c)
                     <tr>
                         <td>{{ $c->fecha->format('d/m/Y') }}</td>
                         <td>{{ $c->usuario->name }}</td>
-                        <td>{{ $sim }} {{ number_format($c->monto_apertura, 2) }}</td>
-                        <td>{{ $sim }} {{ number_format($c->monto_cierre, 2) }}</td>
-                        <td>{{ $sim }} {{ number_format($c->monto_esperado, 2) }}</td>
                         <td>
-                            @php $dif = (float) $c->diferencia; @endphp
-                            <span class="spa-badge {{ $dif == 0 ? 'success' : ($dif > 0 ? 'info' : 'danger') }}">
-                                {{ $dif > 0 ? '+' : '' }}{{ $sim }} {{ number_format($dif, 2) }}
-                            </span>
+                            @if($c->estado === 'abierta')
+                                <span class="spa-badge success">Abierta</span>
+                            @else
+                                <span class="spa-badge" style="background:var(--spa-secondary);color:#fff">Cerrada</span>
+                            @endif
+                        </td>
+                        <td>{{ $sim }} {{ number_format($c->monto_apertura, 2) }}</td>
+                        <td>{{ $c->estado === 'abierta' ? '—' : $sim . ' ' . number_format($c->monto_cierre, 2) }}</td>
+                        <td>{{ $c->estado === 'abierta' ? '—' : $sim . ' ' . number_format($c->monto_esperado, 2) }}</td>
+                        <td>
+                            @if($c->estado === 'abierta')
+                                <span class="text-spa-muted">—</span>
+                            @else
+                                @php $dif = (float) $c->diferencia; @endphp
+                                <span class="spa-badge {{ $dif == 0 ? 'success' : ($dif > 0 ? 'info' : 'danger') }}">
+                                    {{ $dif > 0 ? '+' : '' }}{{ $sim }} {{ number_format($dif, 2) }}
+                                </span>
+                            @endif
                         </td>
                         <td class="text-end">
                             <a href="{{ route('caja.show', $c) }}" class="btn btn-sm" style="background:var(--spa-info);color:#fff"><i class="bi bi-eye"></i></a>

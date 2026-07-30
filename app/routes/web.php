@@ -34,6 +34,8 @@ Route::get('pwa-icon/{size}.png', [PwaController::class, 'icon'])->whereIn('size
 // Recibos públicos firmados (para compartir por WhatsApp sin necesitar cuenta)
 Route::get('r/venta/{venta}', [VentaController::class, 'reciboPublico'])
     ->middleware('signed')->name('publico.venta.recibo');
+Route::get('r/caja/{caja}', [CajaController::class, 'reportePublico'])
+    ->middleware('signed')->name('publico.caja.reporte');
 
 // Auth
 Route::middleware('guest')->group(function () {
@@ -69,6 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('caja/abrir', [CajaController::class, 'formAbrir'])->name('caja.abrir');
     Route::post('caja/abrir', [CajaController::class, 'abrir'])->name('caja.abrir.store');
     Route::get('caja/{caja}', [CajaController::class, 'show'])->name('caja.show');
+    Route::get('caja/{caja}/reporte', [CajaController::class, 'reporte'])->name('caja.reporte');
     Route::post('caja/{caja}/movimientos', [CajaController::class, 'agregarMovimiento'])->name('caja.movimientos.store');
     Route::delete('caja/{caja}/movimientos/{movimiento}', [CajaController::class, 'eliminarMovimiento'])->name('caja.movimientos.destroy');
     Route::post('caja/{caja}/cerrar', [CajaController::class, 'cerrar'])->name('caja.cerrar');

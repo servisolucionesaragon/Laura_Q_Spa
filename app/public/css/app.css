@@ -611,3 +611,13 @@ a:hover { color: var(--spa-secondary); }
     .spa-topbar .page-title { font-size: 1rem; }
     .user-chip small { display: none; }
 }
+
+/* ---------- Scrollbar general con el color primario ---------- */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--spa-primary) var(--spa-bg-light);
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--spa-bg-light); }
+::-webkit-scrollbar-thumb { background: var(--spa-primary); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--spa-primary-dark); }
