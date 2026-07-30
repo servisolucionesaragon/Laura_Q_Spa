@@ -49,11 +49,12 @@
             </a>
         @endif
         <button onclick="window.print()" class="btn btn-spa-primary"><i class="bi bi-printer"></i> Imprimir ticket</button>
-        @if(! ($publico ?? false) && $venta->estado === 'pagada')
-        <form action="{{ route('ventas.anular', $venta) }}" method="POST" onsubmit="return confirm('¿Anular esta venta?')">
-            @csrf
-            <button class="btn" style="background:var(--spa-danger);color:#fff"><i class="bi bi-x-circle"></i> Anular</button>
-        </form>
+        @if(! ($publico ?? false) && $venta->estado === 'pagada' && auth()->user()?->esAdmin())
+            <a href="{{ route('ventas.edit', $venta) }}" class="btn btn-spa-secondary"><i class="bi bi-pencil"></i> Editar</a>
+            <form action="{{ route('ventas.anular', $venta) }}" method="POST" onsubmit="return confirm('¿Anular esta venta? El stock de los productos se revertirá.')">
+                @csrf
+                <button class="btn" style="background:var(--spa-danger);color:#fff"><i class="bi bi-x-circle"></i> Anular</button>
+            </form>
         @endif
     </div>
 </div>

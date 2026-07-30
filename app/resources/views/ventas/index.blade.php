@@ -61,8 +61,11 @@
                             @elseif($v->estado === 'anulada')<span class="spa-badge danger">Anulada</span>
                             @else<span class="spa-badge warning">Pendiente</span>@endif
                         </td>
-                        <td class="text-end">
-                            <a href="{{ route('ventas.show', $v) }}" class="btn btn-sm" style="background:var(--spa-info);color:#fff"><i class="bi bi-eye"></i></a>
+                        <td class="text-end" style="white-space:nowrap">
+                            <a href="{{ route('ventas.show', $v) }}" class="btn btn-sm" style="background:var(--spa-info);color:#fff" title="Ver"><i class="bi bi-eye"></i></a>
+                            @if($v->estado === 'pagada' && auth()->user()?->esAdmin())
+                                <a href="{{ route('ventas.edit', $v) }}" class="btn btn-spa-secondary btn-sm" title="Editar"><i class="bi bi-pencil"></i></a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

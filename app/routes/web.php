@@ -61,8 +61,8 @@ Route::middleware('auth')->group(function () {
 
     // Ventas / TPV
     Route::get('ventas/tpv', [VentaController::class, 'tpv'])->name('ventas.tpv');
-    Route::post('ventas/{venta}/anular', [VentaController::class, 'anular'])->name('ventas.anular');
     Route::resource('ventas', VentaController::class)->only(['index', 'store', 'show']);
+    // Editar/anular ventas: solo administrador (ver grupo role:admin más abajo)
     Route::resource('metodos-pago', MetodoPagoController::class)->except(['show', 'create', 'edit'])
         ->parameters(['metodos-pago' => 'metodoPago']);
 
@@ -109,6 +109,11 @@ Route::middleware('auth')->group(function () {
 
     /* ======= Sistema (sólo admin) ======= */
     Route::middleware('role:admin')->group(function () {
+        // Editar/anular ventas
+        Route::get('ventas/{venta}/edit', [VentaController::class, 'edit'])->name('ventas.edit');
+        Route::put('ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
+        Route::post('ventas/{venta}/anular', [VentaController::class, 'anular'])->name('ventas.anular');
+
         Route::get('configuracion', [ConfiguracionController::class, 'edit'])->name('configuracion.edit');
         Route::post('configuracion', [ConfiguracionController::class, 'update'])->name('configuracion.update');
 
