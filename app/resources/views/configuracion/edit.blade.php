@@ -121,6 +121,7 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Color primario</label>
+                                    <div class="form-text mb-1">Botones, enlaces y acentos principales.</div>
                                     <div class="d-flex gap-2 align-items-center">
                                         <input type="color" name="color_primario" class="form-control form-control-color" style="width:60px"
                                                value="{{ old('color_primario', $configuracion->color_primario) }}">
@@ -130,6 +131,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Color secundario</label>
+                                    <div class="form-text mb-1">Títulos, topbar y el ítem activo del menú lateral.</div>
                                     <div class="d-flex gap-2 align-items-center">
                                         <input type="color" name="color_secundario" class="form-control form-control-color" style="width:60px"
                                                value="{{ old('color_secundario', $configuracion->color_secundario) }}">
@@ -137,6 +139,41 @@
                                                value="{{ old('color_secundario', $configuracion->color_secundario) }}">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Color de acento</label>
+                                    <div class="form-text mb-1">Íconos y detalles decorativos (íconos de tarjetas, resplandor del login).</div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="color" name="color_accent" class="form-control form-control-color" style="width:60px"
+                                               value="{{ old('color_accent', $configuracion->color_accent ?? '#a87f48') }}">
+                                        <input type="text" class="form-control" readonly
+                                               value="{{ old('color_accent', $configuracion->color_accent ?? '#a87f48') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Fondo del menú lateral</label>
+                                    <div class="form-text mb-1">Color de fondo de la barra de navegación.</div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="color" name="color_sidebar_fondo" class="form-control form-control-color" style="width:60px"
+                                               value="{{ old('color_sidebar_fondo', $configuracion->color_sidebar_fondo ?? '#2e1c33') }}">
+                                        <input type="text" class="form-control" readonly
+                                               value="{{ old('color_sidebar_fondo', $configuracion->color_sidebar_fondo ?? '#2e1c33') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Texto del menú lateral</label>
+                                    <div class="form-text mb-1">Color del texto/íconos sobre el fondo del menú.</div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="color" name="color_sidebar_texto" class="form-control form-control-color" style="width:60px"
+                                               value="{{ old('color_sidebar_texto', $configuracion->color_sidebar_texto ?? '#f0e4ea') }}">
+                                        <input type="text" class="form-control" readonly
+                                               value="{{ old('color_sidebar_texto', $configuracion->color_sidebar_texto ?? '#f0e4ea') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-text mt-2">
+                                <i class="bi bi-info-circle"></i> Los tonos oscuros para hovers y degradados
+                                (botones, tarjetas) se calculan automáticamente a partir de estos colores base.
                             </div>
                         </div>
                     </div>

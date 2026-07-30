@@ -22,14 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}?v=3" rel="stylesheet">
 
-    @if($configEmpresa)
-        <style>
-            :root {
-                --spa-primary: {{ $configEmpresa->color_primario ?? '#d4a5c0' }};
-                --spa-secondary: {{ $configEmpresa->color_secundario ?? '#8b6f8e' }};
-            }
-        </style>
-    @endif
+    @include('layouts.partials.theme-colors')
 
     @stack('styles')
 </head>

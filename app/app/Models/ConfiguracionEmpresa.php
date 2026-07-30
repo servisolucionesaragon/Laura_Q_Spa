@@ -28,6 +28,9 @@ class ConfiguracionEmpresa extends Model
         'zona_horaria',
         'color_primario',
         'color_secundario',
+        'color_accent',
+        'color_sidebar_fondo',
+        'color_sidebar_texto',
         'hora_apertura',
         'hora_cierre',
         'dias_laborales',
@@ -57,6 +60,9 @@ class ConfiguracionEmpresa extends Model
             'zona_horaria' => 'America/Guatemala',
             'color_primario' => '#d4a5c0',
             'color_secundario' => '#8b6f8e',
+            'color_accent' => '#a87f48',
+            'color_sidebar_fondo' => '#2e1c33',
+            'color_sidebar_texto' => '#f0e4ea',
             'hora_apertura' => '09:00:00',
             'hora_cierre' => '20:00:00',
             'intervalo_citas_min' => 30,
@@ -77,5 +83,29 @@ class ConfiguracionEmpresa extends Model
         return $this->logo
             ? asset('storage/' . $this->logo)
             : null;
+    }
+
+    /**
+     * Oscurece un color hex un porcentaje (0-1), para derivar automáticamente
+     * variantes "dark"/"darker" de un solo color base elegido por el usuario
+     * (usadas en hovers y degradados) sin pedirle que elija cada tono a mano.
+     */
+    public static function oscurecer(string $hex, float $porcentaje): string
+    {
+        $hex = ltrim($hex, '#');
+        if (strlen($hex) === 3) {
+            $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
+        }
+        if (strlen($hex) !== 6 || ! ctype_xdigit($hex)) {
+            return '#'.$hex;
+        }
+
+        [$r, $g, $b] = array_map('hexdec', str_split($hex, 2));
+        $factor = 1 - max(0, min(1, $porcentaje));
+        $r = max(0, (int) round($r * $factor));
+        $g = max(0, (int) round($g * $factor));
+        $b = max(0, (int) round($b * $factor));
+
+        return sprintf('#%02x%02x%02x', $r, $g, $b);
     }
 }
