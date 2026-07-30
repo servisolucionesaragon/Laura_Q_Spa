@@ -53,7 +53,8 @@
             </div>
 
             <footer class="text-center py-3 text-spa-muted" style="font-size:.82rem">
-                © {{ date('Y') }} {{ $configEmpresa->nombre_empresa ?? config('app.name') }} · Software TPV Estética &amp; SPA
+                © {{ date('Y') }} Todos los derechos reservados. Desarrollado por:
+                <a href="https://ssaragon.com" target="_blank" rel="noopener" style="color:#E85D04">Servisoluciones Aragón</a>
             </footer>
         </main>
     </div>

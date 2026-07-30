@@ -91,6 +91,10 @@
         </form>
     </div>
 </div>
+<footer class="text-center py-3" style="font-size:.82rem;color:rgba(255,255,255,.85);position:relative;z-index:1">
+    © {{ date('Y') }} Todos los derechos reservados. Desarrollado por:
+    <a href="https://ssaragon.com" target="_blank" rel="noopener" style="color:#ffd7e2">Servisoluciones Aragón</a>
+</footer>
 <script src="{{ asset('js/app.js') }}?v=3"></script>
 </body>
 </html>
