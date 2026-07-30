@@ -149,7 +149,9 @@ a:hover { color: var(--spa-secondary); }
     transition: transform 0.3s ease;
     box-shadow: 4px 0 20px rgba(20, 8, 26, 0.25);
 }
+.spa-sidebar { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
 .spa-sidebar::-webkit-scrollbar { width: 6px; }
+.spa-sidebar::-webkit-scrollbar-track { background: transparent; }
 .spa-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
 .spa-sidebar .brand {
     display: flex; align-items: center; gap: 0.7rem;

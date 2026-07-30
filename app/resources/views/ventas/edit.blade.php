@@ -201,13 +201,18 @@
         return MONEDA_FORMATO === 'amount_symbol' ? `${num} ${MONEDA_SIMBOLO}` : `${MONEDA_SIMBOLO} ${num}`;
     }
 
-    let carrito = @json($venta->items->map(fn ($it) => [
-        'tipo' => $it->tipo,
-        'id' => $it->referencia_id,
-        'descripcion' => $it->descripcion,
-        'precio' => (float) $it->precio_unitario,
-        'cantidad' => (float) $it->cantidad,
-    ]));
+    @php
+        $carritoInicial = $venta->items->map(function ($it) {
+            return [
+                'tipo' => $it->tipo,
+                'id' => $it->referencia_id,
+                'descripcion' => $it->descripcion,
+                'precio' => (float) $it->precio_unitario,
+                'cantidad' => (float) $it->cantidad,
+            ];
+        });
+    @endphp
+    let carrito = @json($carritoInicial);
 
     function cambiarTab(tab, btn) {
         document.querySelectorAll('.tpv-tab').forEach(t => t.classList.remove('active'));
