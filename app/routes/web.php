@@ -11,6 +11,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PwaController;
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('ventas/tpv', [VentaController::class, 'tpv'])->name('ventas.tpv');
     Route::post('ventas/{venta}/anular', [VentaController::class, 'anular'])->name('ventas.anular');
     Route::resource('ventas', VentaController::class)->only(['index', 'store', 'show']);
+    Route::resource('metodos-pago', MetodoPagoController::class)->except(['show', 'create', 'edit']);
 
     // Bonos
     Route::resource('bonos-plantillas', BonoPlantillaController::class)->except(['show']);

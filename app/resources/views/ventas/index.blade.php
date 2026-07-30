@@ -29,7 +29,10 @@
             <h3><i class="bi bi-receipt text-spa-primary"></i> Historial de ventas</h3>
             <small class="text-spa-muted">Tickets emitidos en el período seleccionado.</small>
         </div>
-        <a href="{{ route('ventas.tpv') }}" class="btn btn-spa-primary"><i class="bi bi-cash-stack"></i> Ir al TPV</a>
+        <div class="d-flex gap-2">
+            <a href="{{ route('metodos-pago.index') }}" class="btn btn-spa-secondary"><i class="bi bi-credit-card"></i> Métodos de pago</a>
+            <a href="{{ route('ventas.tpv') }}" class="btn btn-spa-primary"><i class="bi bi-cash-stack"></i> Ir al TPV</a>
+        </div>
     </div>
 
     <form method="GET" class="row g-2 mb-3">

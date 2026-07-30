@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\MetodoPago;
 use App\Models\Producto;
 use App\Models\Tratamiento;
 use App\Models\User;
@@ -42,6 +43,7 @@ class VentaController extends Controller
             'productos'    => Producto::activos()->paraVenta()->orderBy('nombre')->get(),
             'clientes'     => Cliente::where('activo', true)->orderBy('nombre')->get(['id', 'nombre', 'apellido', 'telefono']),
             'profesionales'=> User::where('rol', 'profesional')->where('activo', true)->orderBy('name')->get(['id', 'name']),
+            'metodosPago'  => MetodoPago::activos()->orderBy('nombre')->get(),
         ]);
     }
 
@@ -49,7 +51,7 @@ class VentaController extends Controller
     {
         $datos = $request->validate([
             'cliente_id'           => 'nullable|exists:clientes,id',
-            'metodo_pago'          => 'required|in:efectivo,tarjeta,transferencia,mixto,otro',
+            'metodo_pago'          => 'required|string|exists:metodos_pago,nombre',
             'descuento'            => 'nullable|numeric|min:0',
             'notas'                => 'nullable|string',
             'items'                => 'required|array|min:1',

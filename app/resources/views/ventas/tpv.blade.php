@@ -153,11 +153,11 @@
                 <div class="mb-2">
                     <label class="form-label" style="font-size:.78rem;margin-bottom:.2rem">Método de pago</label>
                     <select name="metodo_pago" class="form-select form-select-sm" required>
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
-                        <option value="transferencia">Transferencia</option>
-                        <option value="mixto">Mixto</option>
-                        <option value="otro">Otro</option>
+                        @forelse($metodosPago as $mp)
+                            <option value="{{ $mp->nombre }}">{{ ucfirst($mp->nombre) }}</option>
+                        @empty
+                            <option value="efectivo">Efectivo</option>
+                        @endforelse
                     </select>
                 </div>
 
