@@ -45,6 +45,10 @@
                         <td><span class="spa-badge {{ $c->estado_badge }}">{{ $c->estado_label }}</span></td>
                         <td>{{ $sim }} {{ number_format($c->total, 2) }}</td>
                         <td class="text-end" style="white-space:nowrap">
+                            @if(in_array($c->estado, ['pendiente', 'confirmada']) && $c->fecha->isFuture() && $c->cliente?->numeroWhatsapp())
+                                <a href="{{ $c->cliente->whatsappUrl($c->mensajeRecordatorio()) }}" target="_blank"
+                                   class="btn btn-sm" style="background:#25D366;color:#fff" title="Recordatorio por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                            @endif
                             <a href="{{ route('citas.show', $c) }}" class="btn btn-sm" style="background:var(--spa-info);color:#fff"><i class="bi bi-eye"></i></a>
                             <a href="{{ route('citas.edit', $c) }}" class="btn btn-spa-secondary btn-sm"><i class="bi bi-pencil"></i></a>
                         </td>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends($layout ?? 'layouts.app')
 @section('titulo', 'Ticket ' . $venta->numero)
 
 @push('styles')
@@ -28,6 +28,7 @@
 .ticket-tot div { display: flex; justify-content: space-between; padding: 2px 0; }
 .ticket-tot div.gran { font-size: 1.2rem; font-weight: 800; color: var(--spa-secondary); padding-top: .5rem; border-top: 1px solid var(--spa-border); margin-top: .35rem; }
 .ticket-msg { text-align: center; color: var(--spa-muted); font-size: .85rem; font-style: italic; margin-top: 1.5rem; }
+.ticket-logo { display: block; max-height: 70px; max-width: 200px; margin: 0 auto .75rem; object-fit: contain; }
 </style>
 @endpush
 
@@ -35,10 +36,20 @@
 @php $sim = $configEmpresa?->simbolo_moneda ?? 'Q'; @endphp
 
 <div class="d-flex justify-content-between mb-3 no-print flex-wrap gap-2">
-    <a href="{{ route('ventas.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    @if(! ($publico ?? false))
+        <a href="{{ route('ventas.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    @else
+        <span></span>
+    @endif
     <div class="d-flex gap-2">
+        @if(! ($publico ?? false) && $venta->cliente?->numeroWhatsapp())
+            <a href="{{ $venta->cliente->whatsappUrl('Hola ' . $venta->cliente->nombre . ', te compartimos tu comprobante de compra en *' . ($configEmpresa->nombre_empresa ?? 'nuestro spa') . '*: ' . \Illuminate\Support\Facades\URL::signedRoute('publico.venta.recibo', $venta)) }}"
+               target="_blank" class="btn" style="background:#25D366;color:#fff">
+                <i class="bi bi-whatsapp"></i> Enviar por WhatsApp
+            </a>
+        @endif
         <button onclick="window.print()" class="btn btn-spa-primary"><i class="bi bi-printer"></i> Imprimir ticket</button>
-        @if($venta->estado === 'pagada')
+        @if(! ($publico ?? false) && $venta->estado === 'pagada')
         <form action="{{ route('ventas.anular', $venta) }}" method="POST" onsubmit="return confirm('¿Anular esta venta?')">
             @csrf
             <button class="btn" style="background:var(--spa-danger);color:#fff"><i class="bi bi-x-circle"></i> Anular</button>
@@ -48,6 +59,9 @@
 </div>
 
 <div class="ticket">
+    @if($configEmpresa?->logoUrl())
+        <img src="{{ $configEmpresa->logoUrl() }}" alt="Logo" class="ticket-logo">
+    @endif
     <h2>{{ $configEmpresa?->nombre_empresa ?? 'Estética & SPA' }}</h2>
     <div class="empresa">
         @if($configEmpresa?->direccion){{ $configEmpresa->direccion }}<br>@endif

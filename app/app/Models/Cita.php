@@ -77,4 +77,36 @@ class Cita extends Model
         $this->hora_fin = \Carbon\Carbon::parse($this->hora_inicio)->addMinutes($duracion)->format('H:i:s');
         $this->save();
     }
+
+    protected function nombreEmpresa(): string
+    {
+        return ConfiguracionEmpresa::first()?->nombre_empresa ?? 'nuestro spa';
+    }
+
+    protected function fechaHoraTexto(): string
+    {
+        $fecha = $this->fecha->locale('es')->isoFormat('D [de] MMMM');
+        $hora = \Carbon\Carbon::parse($this->hora_inicio)->format('H:i');
+        return "{$fecha} a las {$hora}";
+    }
+
+    public function mensajeRecordatorio(): string
+    {
+        return "Hola {$this->cliente?->nombre}, te recordamos tu cita en *{$this->nombreEmpresa()}* el {$this->fechaHoraTexto()}. ¡Te esperamos!";
+    }
+
+    public function mensajeCambioEstado(string $estado): string
+    {
+        $nombre = $this->cliente?->nombre;
+        $empresa = $this->nombreEmpresa();
+        $cuando = $this->fechaHoraTexto();
+
+        return match ($estado) {
+            'confirmada' => "Hola {$nombre}, tu cita en *{$empresa}* para el {$cuando} ha sido *confirmada*. ¡Te esperamos!",
+            'cancelada'  => "Hola {$nombre}, lamentamos informarte que tu cita del {$cuando} en *{$empresa}* fue *cancelada*. Escríbenos si deseas reagendar.",
+            'realizada'  => "Hola {$nombre}, ¡gracias por tu visita a *{$empresa}*! Esperamos que hayas disfrutado tu cita.",
+            'no_show'    => "Hola {$nombre}, notamos que no pudiste asistir a tu cita del {$cuando} en *{$empresa}*. Escríbenos si deseas reagendar.",
+            default      => "Hola {$nombre}, tu cita en *{$empresa}* del {$cuando} cambió de estado a: {$estado}.",
+        };
+    }
 }

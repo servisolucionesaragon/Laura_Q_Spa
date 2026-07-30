@@ -12,12 +12,18 @@ class ClienteController extends Controller
     public function index(Request $request): View
     {
         $q = trim((string) $request->get('q'));
+        $soloCumpleanio = $request->boolean('cumpleanio');
+
         $clientes = Cliente::buscar($q)
+            ->when($soloCumpleanio, fn ($query) => $query->conCumpleanioEsteMes())
             ->withCount(['citas', 'ventas', 'bonos'])
             ->orderBy('nombre')
             ->paginate(15)
             ->withQueryString();
-        return view('clientes.index', compact('clientes', 'q'));
+
+        $cumpleanioMesCount = Cliente::conCumpleanioEsteMes()->count();
+
+        return view('clientes.index', compact('clientes', 'q', 'soloCumpleanio', 'cumpleanioMesCount'));
     }
 
     public function create(): View

@@ -30,6 +30,10 @@ Route::get('/', function () {
 Route::get('manifest.webmanifest', [PwaController::class, 'manifest'])->name('pwa.manifest');
 Route::get('pwa-icon/{size}.png', [PwaController::class, 'icon'])->whereIn('size', ['192', '512'])->name('pwa.icon');
 
+// Recibos públicos firmados (para compartir por WhatsApp sin necesitar cuenta)
+Route::get('r/venta/{venta}', [VentaController::class, 'reciboPublico'])
+    ->middleware('signed')->name('publico.venta.recibo');
+
 // Auth
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'showLogin'])->name('login');

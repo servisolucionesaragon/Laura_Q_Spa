@@ -143,6 +143,16 @@ class VentaController extends Controller
         return view('ventas.show', compact('venta'));
     }
 
+    public function reciboPublico(Venta $venta): View
+    {
+        $venta->load(['cliente', 'user', 'items', 'pagos']);
+        return view('ventas.show', [
+            'venta'   => $venta,
+            'layout'  => 'layouts.publico',
+            'publico' => true,
+        ]);
+    }
+
     public function anular(Venta $venta): RedirectResponse
     {
         if ($venta->estado === 'anulada') {

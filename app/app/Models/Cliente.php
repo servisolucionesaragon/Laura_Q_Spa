@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\TieneWhatsapp;
 use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    use TieneWhatsapp;
+
     protected $fillable = [
         'nombre', 'apellido', 'email', 'telefono', 'fecha_nacimiento',
         'genero', 'direccion', 'ciudad', 'documento', 'alergias',
@@ -52,5 +55,23 @@ class Cliente extends Model
               ->orWhere('telefono', 'like', "%{$busqueda}%")
               ->orWhere('email', 'like', "%{$busqueda}%");
         });
+    }
+
+    /**
+     * Cumple años dentro del mes actual (sin importar el año).
+     * Nombre elegido a propósito para no colisionar con el scope de abajo:
+     * PHP no distingue mayúsculas en nombres de método
+     * (cumpleAnioEsteMes vs scopeConCumpleanioEsteMes no chocan).
+     */
+    public function cumpleAnioEsteMes(): bool
+    {
+        return $this->fecha_nacimiento
+            && (int) $this->fecha_nacimiento->format('m') === (int) now()->format('m');
+    }
+
+    public function scopeConCumpleanioEsteMes($q)
+    {
+        return $q->whereNotNull('fecha_nacimiento')
+            ->whereMonth('fecha_nacimiento', now()->month);
     }
 }

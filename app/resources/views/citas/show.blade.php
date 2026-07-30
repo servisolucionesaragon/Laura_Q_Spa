@@ -11,6 +11,10 @@
             <small class="text-spa-muted">{{ \Carbon\Carbon::parse($cita->hora_inicio)->format('H:i') }} — {{ \Carbon\Carbon::parse($cita->hora_fin)->format('H:i') }}</small>
         </div>
         <div class="d-flex gap-2 flex-wrap">
+            @if($cita->cliente?->numeroWhatsapp())
+                <a href="{{ $cita->cliente->whatsappUrl($cita->mensajeRecordatorio()) }}" target="_blank"
+                   class="btn" style="background:#25D366;color:#fff"><i class="bi bi-whatsapp"></i> Recordatorio</a>
+            @endif
             <a href="{{ route('citas.edit', $cita) }}" class="btn btn-spa-primary"><i class="bi bi-pencil"></i> Editar</a>
             <a href="{{ route('citas.index') }}" class="btn btn-spa-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
         </div>
@@ -60,22 +64,35 @@
     <hr style="border-color:var(--spa-border-soft)">
 
     {{-- Cambio rápido de estado --}}
-    <div class="d-flex gap-2 flex-wrap">
+    <div class="d-flex gap-2 flex-wrap align-items-center">
         <span style="font-weight:600;color:var(--spa-secondary);align-self:center">Cambiar estado:</span>
         @foreach(['pendiente'=>'warning','confirmada'=>'info','realizada'=>'success','cancelada'=>'danger','no_show'=>'danger'] as $est=>$col)
             @if($cita->estado !== $est)
-                <form action="{{ route('citas.estado', $cita) }}" method="POST" class="d-inline">
-                    @csrf <input type="hidden" name="estado" value="{{ $est }}">
-                    <button class="btn btn-sm" style="background:var(--spa-{{ $col }});color:#fff">
-                        {{ ucfirst(str_replace('_',' ',$est)) }}
-                    </button>
-                </form>
+                <div class="d-flex" style="gap:2px">
+                    <form action="{{ route('citas.estado', $cita) }}" method="POST" class="d-inline">
+                        @csrf <input type="hidden" name="estado" value="{{ $est }}">
+                        <button class="btn btn-sm" style="background:var(--spa-{{ $col }});color:#fff;{{ $cita->cliente?->numeroWhatsapp() ? 'border-top-right-radius:0;border-bottom-right-radius:0' : '' }}">
+                            {{ ucfirst(str_replace('_',' ',$est)) }}
+                        </button>
+                    </form>
+                    @if($cita->cliente?->numeroWhatsapp())
+                        <a href="{{ $cita->cliente->whatsappUrl($cita->mensajeCambioEstado($est)) }}" target="_blank"
+                           class="btn btn-sm" style="background:#25D366;color:#fff;border-top-left-radius:0;border-bottom-left-radius:0"
+                           title="Avisar por WhatsApp que la cita queda &quot;{{ $est }}&quot;">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    @endif
+                </div>
             @endif
         @endforeach
         <form action="{{ route('citas.destroy', $cita) }}" method="POST" class="ms-auto" onsubmit="return confirm('¿Eliminar esta cita?')">
             @csrf @method('DELETE')
             <button class="btn btn-sm" style="background:var(--spa-danger);color:#fff"><i class="bi bi-trash"></i> Eliminar</button>
         </form>
+    </div>
+    <div class="form-text mt-2">
+        <i class="bi bi-info-circle"></i> El botón <i class="bi bi-whatsapp"></i> junto a cada estado solo avisa
+        por WhatsApp — el estado real de la cita cambia al presionar el botón de color.
     </div>
 </div>
 @endsection
