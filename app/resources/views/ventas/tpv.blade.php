@@ -100,7 +100,7 @@
                          onclick='agregarItem({"tipo":"servicio","id":{{ $t->id }},"descripcion":"{{ addslashes($t->nombre) }}","precio":{{ $t->precio }}})'>
                         <div class="nombre">{{ $t->nombre }}</div>
                         <div class="meta">{{ $t->duracion_min }} min</div>
-                        <div class="precio">Q {{ number_format($t->precio, 2) }}</div>
+                        <div class="precio">{{ $configEmpresa?->formatearMoneda($t->precio) ?? ('$ ' . number_format($t->precio, 2)) }}</div>
                     </div>
                 @endforeach
             </div>
@@ -115,7 +115,7 @@
                         <div class="meta {{ $p->stock_actual <= 0 ? 'stock-bajo' : '' }}">
                             {{ $p->stock_actual }} {{ $p->unidad }} disp.
                         </div>
-                        <div class="precio">Q {{ number_format($p->precio_venta, 2) }}</div>
+                        <div class="precio">{{ $configEmpresa?->formatearMoneda($p->precio_venta) ?? ('$ ' . number_format($p->precio_venta, 2)) }}</div>
                     </div>
                 @endforeach
             </div>
@@ -161,10 +161,11 @@
                     </select>
                 </div>
 
+                @php($monedaCero = $configEmpresa?->formatearMoneda(0) ?? '$ 0.00')
                 <div class="totales">
-                    <div class="line"><span>Subtotal</span><strong id="t-sub">Q 0.00</strong></div>
-                    <div class="line"><span>Descuento</span><strong id="t-desc">Q 0.00</strong></div>
-                    <div class="line grand"><span>Total</span><strong id="t-total">Q 0.00</strong></div>
+                    <div class="line"><span>Subtotal</span><strong id="t-sub">{{ $monedaCero }}</strong></div>
+                    <div class="line"><span>Descuento</span><strong id="t-desc">{{ $monedaCero }}</strong></div>
+                    <div class="line grand"><span>Total</span><strong id="t-total">{{ $monedaCero }}</strong></div>
                 </div>
 
                 <button type="submit" class="btn btn-spa-primary btn-block mt-3" id="btnCobrar" disabled>
@@ -180,6 +181,13 @@
 
 @push('scripts')
 <script>
+    const MONEDA_SIMBOLO = @json($configEmpresa->simbolo_moneda ?? '$');
+    const MONEDA_FORMATO = @json($configEmpresa->formato_moneda ?? 'symbol_amount');
+    function formatearMoneda(monto) {
+        const num = Number(monto).toFixed(2);
+        return MONEDA_FORMATO === 'amount_symbol' ? `${num} ${MONEDA_SIMBOLO}` : `${MONEDA_SIMBOLO} ${num}`;
+    }
+
     let carrito = [];
 
     function cambiarTab(tab, btn) {
@@ -231,10 +239,10 @@
                 el.innerHTML = `
                     <div class="info">
                         <strong>${it.descripcion}</strong>
-                        <small>${it.tipo === 'servicio' ? '🌸' : '📦'} Q ${it.precio.toFixed(2)} c/u</small>
+                        <small>${it.tipo === 'servicio' ? '🌸' : '📦'} ${formatearMoneda(it.precio)} c/u</small>
                     </div>
                     <div class="controls">
-                        <input type="number" min="0.01" step="${it.tipo === 'producto' ? '1' : '0.01'}" value="${it.cantidad}"
+                        <input type="number" min="${it.tipo === 'producto' ? '1' : '0.01'}" step="${it.tipo === 'producto' ? '1' : '0.01'}" value="${it.cantidad}"
                                onchange="cambiarCantidad(${idx}, this.value)">
                         <button type="button" class="btn-x" onclick="quitarItem(${idx})">×</button>
                     </div>
@@ -252,9 +260,9 @@
         const sub = carrito.reduce((s, it) => s + (it.precio * it.cantidad), 0);
         const desc = parseFloat(document.getElementById('descuento').value) || 0;
         const total = Math.max(0, sub - desc);
-        document.getElementById('t-sub').textContent = 'Q ' + sub.toFixed(2);
-        document.getElementById('t-desc').textContent = 'Q ' + desc.toFixed(2);
-        document.getElementById('t-total').textContent = 'Q ' + total.toFixed(2);
+        document.getElementById('t-sub').textContent = formatearMoneda(sub);
+        document.getElementById('t-desc').textContent = formatearMoneda(desc);
+        document.getElementById('t-total').textContent = formatearMoneda(total);
     }
 
     function sincronizarItems() {
