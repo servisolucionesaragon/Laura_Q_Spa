@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     /* ======= CRM / Operativa ======= */
 
     // Clientes
+    Route::get('clientes/buscar', [ClienteController::class, 'buscarAjax'])->name('clientes.buscar');
     Route::resource('clientes', ClienteController::class);
 
     // Citas (agenda)

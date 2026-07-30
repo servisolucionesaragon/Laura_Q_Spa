@@ -3,12 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ClienteController extends Controller
 {
+    public function buscarAjax(Request $request): JsonResponse
+    {
+        $q = trim((string) $request->get('q'));
+        if (mb_strlen($q) < 2) {
+            return response()->json([]);
+        }
+
+        $clientes = Cliente::buscar($q)
+            ->where('activo', true)
+            ->orderBy('nombre')
+            ->limit(10)
+            ->get(['id', 'nombre', 'apellido', 'telefono', 'documento']);
+
+        return response()->json($clientes->map(fn (Cliente $c) => [
+            'id'        => $c->id,
+            'nombre'    => $c->nombre_completo,
+            'telefono'  => $c->telefono,
+            'documento' => $c->documento,
+        ]));
+    }
+
     public function index(Request $request): View
     {
         $q = trim((string) $request->get('q'));

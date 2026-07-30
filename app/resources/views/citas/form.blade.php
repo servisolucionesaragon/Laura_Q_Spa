@@ -15,15 +15,16 @@
 
         <div class="row g-3">
             <div class="col-md-6">
-                <label class="form-label">Cliente *</label>
-                <select name="cliente_id" class="form-select" required>
-                    <option value="">— Selecciona cliente —</option>
-                    @foreach($clientes as $cl)
-                        <option value="{{ $cl->id }}" {{ (string) old('cliente_id', $cita->cliente_id) === (string) $cl->id ? 'selected' : '' }}>
-                            {{ $cl->nombre_completo }} {{ $cl->telefono ? '· ' . $cl->telefono : '' }}
-                        </option>
-                    @endforeach
-                </select>
+                @php
+                    $clienteActual = $cita->cliente ?? null;
+                @endphp
+                @include('clientes.partials.buscador', [
+                    'nombreCampo'    => 'cliente_id',
+                    'idInput'        => 'citaClienteId',
+                    'requerido'      => true,
+                    'clienteId'      => old('cliente_id', $clienteActual?->id),
+                    'clienteTexto'   => old('cliente_id') ? null : ($clienteActual?->nombre_completo . ($clienteActual?->telefono ? ' · ' . $clienteActual?->telefono : '')),
+                ])
             </div>
             <div class="col-md-6">
                 <label class="form-label">Servicio *</label>

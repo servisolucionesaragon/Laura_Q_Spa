@@ -130,12 +130,12 @@
                 <h4 style="color:var(--spa-secondary);margin:0 0 .85rem"><i class="bi bi-cart3"></i> Carrito <span id="contador" class="spa-badge">0</span></h4>
 
                 <div class="mb-2">
-                    <select name="cliente_id" class="form-select form-select-sm">
-                        <option value="">— Cliente eventual —</option>
-                        @foreach($clientes as $cl)
-                            <option value="{{ $cl->id }}">{{ $cl->nombre }} {{ $cl->apellido }}</option>
-                        @endforeach
-                    </select>
+                    @include('clientes.partials.buscador', [
+                        'nombreCampo'  => 'cliente_id',
+                        'idInput'      => 'tpvCliente',
+                        'requerido'    => false,
+                        'placeholder'  => 'Cliente eventual (buscar)...',
+                    ])
                 </div>
 
                 <div class="cart-items" id="cart-items">

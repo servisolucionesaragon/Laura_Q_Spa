@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cabina;
 use App\Models\Cita;
 use App\Models\CitaServicio;
-use App\Models\Cliente;
 use App\Models\Tratamiento;
 use App\Models\User;
 use Carbon\Carbon;
@@ -183,7 +182,6 @@ class CitaController extends Controller
     {
         return view('citas.form', [
             'cita'          => $cita,
-            'clientes'      => Cliente::where('activo', true)->orderBy('nombre')->get(),
             'profesionales' => User::where('rol', 'profesional')->where('activo', true)->orderBy('name')->get(),
             'cabinas'       => Cabina::where('activo', true)->orderBy('nombre')->get(),
             'tratamientos'  => Tratamiento::with('categoria')->where('activo', true)->orderBy('nombre')->get(),

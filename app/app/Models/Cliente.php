@@ -53,6 +53,7 @@ class Cliente extends Model
             $w->where('nombre', 'like', "%{$busqueda}%")
               ->orWhere('apellido', 'like', "%{$busqueda}%")
               ->orWhere('telefono', 'like', "%{$busqueda}%")
+              ->orWhere('documento', 'like', "%{$busqueda}%")
               ->orWhere('email', 'like', "%{$busqueda}%");
         });
     }
