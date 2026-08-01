@@ -230,7 +230,7 @@
                             <label class="form-label">Nombre del impuesto *</label>
                             <input type="text" name="nombre_impuesto" class="form-control"
                                    value="{{ old('nombre_impuesto', $configuracion->nombre_impuesto) }}" required>
-                            <div class="form-text">Ej. IVA, ISV, IGV</div>
+                            <div class="form-text">Ej. IVA, ISV, Impuesto</div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">% Impuesto *</label>
